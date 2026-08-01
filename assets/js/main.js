@@ -113,8 +113,9 @@
     if (!carousel || !track) return;
 
     function stars(n) {
+      n = Math.max(0, Math.min(5, n || 5));
       var s = "";
-      for (var i = 0; i < 5; i++) s += '<svg><use href="#ic-star"/></svg>';
+      for (var i = 0; i < 5; i++) s += "<svg" + (i < n ? "" : ' class="dim"') + '><use href="#ic-star"/></svg>';
       return '<div class="rev-card__stars">' + s + "</div>";
     }
     function esc(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }

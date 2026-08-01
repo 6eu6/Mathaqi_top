@@ -510,6 +510,7 @@ html[data-theme="dark"] .rev-arrow { color: var(--gold-soft); }
 .rev-card__quote svg { width: 34px; height: 34px; }
 .rev-card__stars { display: flex; gap: .12rem; color: var(--gold); margin-bottom: .8rem; }
 .rev-card__stars svg { width: 17px; height: 17px; }
+.rev-card__stars svg.dim { opacity: .22; }
 .rev-card p { color: var(--ink-soft); font-size: .96rem; line-height: 1.8; margin-bottom: 1.2rem; }
 .rev-card__author { display: flex; align-items: center; gap: .7rem; }
 .rev-card__avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: "Reem Kufi", sans-serif; font-weight: 700; color: #1c1305; background: var(--grad-gold); }
