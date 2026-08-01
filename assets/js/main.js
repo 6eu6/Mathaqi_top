@@ -29,12 +29,17 @@
   var burger = document.querySelector(".nav__toggle");
   var links = document.querySelector(".nav__links");
   if (burger && links) {
-    burger.addEventListener("click", function () {
-      var open = links.classList.toggle("open");
+    function setNav(open) {
+      links.classList.toggle("open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+      document.body.classList.toggle("nav-open", open);
+    }
+    burger.addEventListener("click", function () { setNav(!links.classList.contains("open")); });
     links.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") { links.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
+      if (e.target.closest("a")) setNav(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && links.classList.contains("open")) setNav(false);
     });
   }
 

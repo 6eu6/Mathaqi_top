@@ -210,25 +210,59 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
 .nav__cta { display: inline-flex; }
 .nav__toggle { display: none; }
 
-/* mobile nav */
+/* mobile nav — full-screen circle-reveal overlay (lightswind style, brand colors) */
 @media (max-width: 860px) {
-  .nav__links {
-    position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px);
-    flex-direction: column; align-items: stretch; gap: .2rem;
-    background: var(--panel); border-inline-end: 1px solid var(--line);
-    padding: 5rem 1.2rem 2rem; transform: translateX(-100%); transition: transform .35s cubic-bezier(.2,.8,.2,1);
-    box-shadow: var(--shadow); z-index: 55;
-  }
-  html[dir="rtl"] .nav__links { inset: 0 0 0 auto; transform: translateX(100%); border-inline: none; border-inline-start: 1px solid var(--line); }
-  .nav__links.open { transform: translateX(0) !important; }
-  .nav__links a { padding: .9rem 1rem; font-size: 1.1rem; }
-  .nav__links a::after { inset-inline: 1rem; }
   .nav__cta { display: none; }
+
+  /* hamburger that morphs into an X */
   .nav__toggle {
-    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px;
-    background: var(--panel); border: 1px solid var(--line); color: var(--ink); cursor: pointer; z-index: 56;
+    display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px;
+    background: var(--panel); border: 1px solid var(--line); color: var(--ink); cursor: pointer;
+    position: relative; z-index: 95; transition: background .3s, border-color .3s, color .3s;
   }
-  .nav__toggle svg { width: 22px; height: 22px; }
+  .nav__toggle svg { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .3s ease, transform .3s ease; }
+  .nav__toggle .i-close { opacity: 0; transform: rotate(-45deg) scale(.4); }
+  .nav__toggle[aria-expanded="true"] { background: transparent; border-color: transparent; color: var(--gold-soft); }
+  .nav__toggle[aria-expanded="true"] .i-bars { opacity: 0; transform: rotate(45deg) scale(.4); }
+  .nav__toggle[aria-expanded="true"] .i-close { opacity: 1; transform: rotate(0) scale(1); }
+
+  /* the overlay */
+  .nav__links {
+    position: fixed; inset: 0; width: 100%; height: 100dvh; margin: 0; z-index: 90;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem;
+    padding: 5rem 1.5rem 3rem;
+    background:
+      radial-gradient(120% 75% at 12% 8%, rgba(199,154,59,.22), transparent 55%),
+      linear-gradient(155deg, #1a1108 0%, #2a1c10 58%, #17100a 100%);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    clip-path: circle(0px at 40px 44px);
+    transition: clip-path .55s cubic-bezier(.25,.46,.45,.94);
+    pointer-events: none;
+  }
+  .nav__links.open { clip-path: circle(150% at 40px 44px); pointer-events: auto; }
+
+  .nav__links a {
+    color: #f3e9d8; font-family: "Reem Kufi", sans-serif; font-weight: 600;
+    font-size: clamp(1.7rem, 7.6vw, 2.5rem); line-height: 1.4; padding: .35rem 1rem;
+    position: relative; opacity: 0; transform: translateX(46px);
+    transition: opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1), color .25s;
+  }
+  .nav__links.open a { opacity: 1; transform: translateX(0); }
+  .nav__links.open a:nth-child(1) { transition-delay: .10s; }
+  .nav__links.open a:nth-child(2) { transition-delay: .16s; }
+  .nav__links.open a:nth-child(3) { transition-delay: .22s; }
+  .nav__links.open a:nth-child(4) { transition-delay: .28s; }
+  .nav__links.open a:nth-child(5) { transition-delay: .34s; }
+  .nav__links.open a:nth-child(6) { transition-delay: .40s; }
+  .nav__links.open a:nth-child(7) { transition-delay: .46s; }
+  .nav__links a:hover, .nav__links a.active { color: var(--gold-soft); }
+  .nav__links a::after {
+    content: ""; position: absolute; left: 50%; bottom: .05rem; height: 3px; width: 46px;
+    background: var(--gold); border-radius: 3px; transform: translateX(-50%) scaleX(0);
+    transform-origin: center; transition: transform .3s ease; inset-inline: auto;
+  }
+  .nav__links a:hover::after, .nav__links a.active::after { transform: translateX(-50%) scaleX(1); }
+  body.nav-open { overflow: hidden; }
 }
 
 /* ----------  Hero  ---------- */
