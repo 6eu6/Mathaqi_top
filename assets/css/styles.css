@@ -50,7 +50,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
-  font-family: "Tajawal", system-ui, "Segoe UI", sans-serif;
+  font-family: "IBM Plex Sans Arabic", system-ui, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--ink);
   line-height: 1.7;
@@ -85,9 +85,13 @@ a { color: inherit; text-decoration: none; }
 .logo-dark  { display: var(--logo-dark); }
 
 /* ----------  Typography  ---------- */
-.display { font-family: "Aref Ruqaa", "El Messiri", serif; font-weight: 700; line-height: 1.15; }
-h1,h2,h3 { font-family: "El Messiri", "Tajawal", sans-serif; font-weight: 700; line-height: 1.25; letter-spacing: .2px; }
+:root { --grad-gold: linear-gradient(135deg, #efd58a 0%, #d3a848 42%, #a87c29 100%); }
+html[data-theme="dark"] { --grad-gold: linear-gradient(135deg, #f4dd97 0%, #e2c165 45%, #c79a3b 100%); }
+.display { font-family: "Aref Ruqaa", "Reem Kufi", serif; font-weight: 700; line-height: 1.2; }
+h1,h2,h3 { font-family: "Reem Kufi", "IBM Plex Sans Arabic", sans-serif; font-weight: 700; line-height: 1.3; letter-spacing: 0; }
+h2 { font-weight: 600; }
 .latin { font-family: "Marcellus", serif; letter-spacing: 3px; text-transform: uppercase; }
+.gold-text { background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 
 .kicker {
   display: inline-flex; align-items: center; gap: .55rem;
@@ -121,7 +125,7 @@ html[data-theme="dark"] .eyebrow-gold { color: var(--gold-soft); }
   --_bg: var(--gold); --_fg: #1c1305;
   display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
   padding: .85rem 1.7rem; border-radius: 999px; border: 1px solid transparent;
-  font-family: "Tajawal", sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer;
+  font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer;
   background: var(--_bg); color: var(--_fg);
   transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .25s, color .25s;
   box-shadow: 0 10px 24px -12px rgba(199,154,59,.7);
@@ -160,7 +164,7 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--gold-soft); }
 }
 .brand__badge img { width: 46px; height: 46px; object-fit: contain; }
 .brand__name { display: flex; flex-direction: column; line-height: 1.05; }
-.brand__name b { font-family: "El Messiri", sans-serif; font-size: 1.15rem; }
+.brand__name b { font-family: "Reem Kufi", sans-serif; font-size: 1.15rem; }
 .brand__name span { font-family: "Marcellus", serif; letter-spacing: 2px; font-size: .6rem; color: var(--ink-faint); text-transform: uppercase; }
 
 .nav__links { display: flex; align-items: center; gap: .3rem; }
@@ -223,9 +227,8 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
   display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(2rem, 5vw, 4rem);
 }
 .hero__eyebrow { margin-bottom: 1.2rem; }
-.hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); margin-bottom: 1rem; }
-.hero h1 .word { color: var(--gold-deep); }
-html[data-theme="dark"] .hero h1 .word { color: var(--gold-soft); }
+.hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.4rem); margin-bottom: 1.1rem; letter-spacing: -.5px; }
+.hero h1 .word { background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .hero__sub { font-size: clamp(1.05rem, 2.2vw, 1.28rem); color: var(--ink-soft); max-width: 46ch; margin-bottom: .4rem; }
 .hero__latin { font-family: "Marcellus", serif; letter-spacing: 5px; text-transform: uppercase; font-size: .8rem; color: var(--ink-faint); margin-bottom: 2rem; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 2rem; }
@@ -264,7 +267,7 @@ html[data-theme="dark"] .strip { background: color-mix(in oklab, var(--gold) 6%,
 @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
 @keyframes slide { to { transform: translateX(50%); } }
 html[dir="rtl"] .marquee { animation-direction: reverse; }
-.marquee span { display: inline-flex; align-items: center; gap: 1.2rem; font-family: "El Messiri", sans-serif; font-weight: 600; color: var(--ink-soft); }
+.marquee span { display: inline-flex; align-items: center; gap: 1.2rem; font-family: "Reem Kufi", sans-serif; font-weight: 600; color: var(--ink-soft); }
 .marquee span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
 
 /* ----------  Features  ---------- */
@@ -296,7 +299,7 @@ html[data-theme="dark"] .feature__icon { color: var(--gold-soft); }
 .signature__body .kicker { color: var(--gold-soft); }
 .signature__body h2 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: .7rem 0 1rem; }
 .signature__body p { color: #d8c9b2; margin-bottom: 1.6rem; }
-.signature__price { display: inline-flex; align-items: baseline; gap: .5rem; font-family: "El Messiri", sans-serif; }
+.signature__price { display: inline-flex; align-items: baseline; gap: .5rem; font-family: "Reem Kufi", sans-serif; }
 .signature__price b { font-size: 2rem; color: var(--gold-soft); }
 .signature__price small { color: #cbb89b; }
 .signature__flame { position: relative; display: grid; place-items: center; background:
@@ -313,7 +316,7 @@ html[data-theme="dark"] .feature__icon { color: var(--gold-soft); }
 .menu__tab {
   display: inline-flex; align-items: center; gap: .5rem; padding: .55rem 1.1rem; border-radius: 999px;
   border: 1px solid var(--line); background: var(--panel); color: var(--ink-soft);
-  font-family: "Tajawal", sans-serif; font-weight: 700; font-size: .92rem; cursor: pointer;
+  font-family: "IBM Plex Sans Arabic", sans-serif; font-weight: 700; font-size: .92rem; cursor: pointer;
   transition: all .25s;
 }
 .menu__tab svg { width: 18px; height: 18px; }
@@ -342,7 +345,7 @@ html[data-theme="dark"] .cat__icon { color: var(--gold-soft); }
 .item__name { font-weight: 500; }
 .item__name small { color: var(--ink-faint); font-weight: 400; font-size: .82rem; }
 .item__dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
-.item__price { font-family: "El Messiri", sans-serif; font-weight: 700; color: var(--gold-deep); white-space: nowrap; display: inline-flex; align-items: baseline; gap: .2rem; }
+.item__price { font-family: "Reem Kufi", sans-serif; font-weight: 700; color: var(--gold-deep); white-space: nowrap; display: inline-flex; align-items: baseline; gap: .2rem; }
 html[data-theme="dark"] .item__price { color: var(--gold-soft); }
 .item__price .cur { font-size: .68em; opacity: .8; }
 .item__price.two { display: inline-flex; gap: .9rem; }
@@ -369,13 +372,13 @@ html[data-theme="dark"] .item__price { color: var(--gold-soft); }
 .combo__row { display: flex; align-items: center; gap: 1rem; padding: .9rem 1.1rem; border-radius: 16px;
   background: rgba(255,255,255,.05); border: 1px solid rgba(226,193,101,.22); }
 .combo__tag { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-  background: var(--gold); color: #1c1305; font-family: "El Messiri", sans-serif; font-weight: 700; }
+  background: var(--gold); color: #1c1305; font-family: "Reem Kufi", sans-serif; font-weight: 700; }
 .combo__info { flex: 1; }
 .combo__info b { display: block; color: #fff; font-size: 1.05rem; }
 .combo__info span { color: #cbb89b; font-size: .86rem; }
 .combo__price { text-align: center; }
 .combo__price .old { color: #9c8a72; text-decoration: line-through; font-size: .82rem; display: block; }
-.combo__price .new { font-family: "El Messiri", sans-serif; font-weight: 700; color: var(--gold-soft); font-size: 1.35rem; }
+.combo__price .new { font-family: "Reem Kufi", sans-serif; font-weight: 700; color: var(--gold-soft); font-size: 1.35rem; }
 .offer-feature__art { position: relative; display: grid; place-items: center; min-height: 260px;
   background: radial-gradient(60% 60% at 50% 55%, rgba(193,91,52,.30), transparent 72%); }
 .offer-feature__art img { width: min(84%, 320px); filter: drop-shadow(0 22px 30px rgba(0,0,0,.5)); transform: rotate(-7deg); }
@@ -394,7 +397,7 @@ html[data-theme="dark"] .item__price { color: var(--gold-soft); }
 .offer p { color: var(--ink-soft); font-size: .9rem; margin-bottom: 1rem; max-width: 22ch; }
 .offer__price { display: flex; align-items: baseline; gap: .6rem; }
 .offer__price .old { color: var(--ink-faint); text-decoration: line-through; font-size: .95rem; }
-.offer__price .new { font-family: "El Messiri", sans-serif; font-weight: 700; color: var(--gold-deep); font-size: 1.7rem; }
+.offer__price .new { font-family: "Reem Kufi", sans-serif; font-weight: 700; color: var(--gold-deep); font-size: 1.7rem; }
 html[data-theme="dark"] .offer__price .new { color: var(--gold-soft); }
 .offer__price .cur { font-size: .7em; color: var(--ink-faint); }
 .offer__img { position: absolute; inset-inline-end: -.6rem; bottom: -.4rem; width: 8.4rem; height: auto;
@@ -402,7 +405,7 @@ html[data-theme="dark"] .offer__price .new { color: var(--gold-soft); }
 .offer:hover .offer__img { transform: rotate(-2deg) scale(1.06); }
 .offer--wide { grid-column: span 2; }
 .offer--disc { text-align: center; padding-inline: 1.7rem; display: grid; place-items: center; }
-.offer--disc .big { font-family: "El Messiri", sans-serif; font-weight: 700; font-size: 3.2rem; color: var(--gold-deep); line-height: 1; }
+.offer--disc .big { font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: 3.2rem; color: var(--gold-deep); line-height: 1; }
 html[data-theme="dark"] .offer--disc .big { color: var(--gold-soft); }
 
 /* ----------  Dishes showcase  ---------- */
@@ -445,7 +448,7 @@ html[data-theme="dark"] .shot { color: var(--gold-soft); }
 .shot.has-img .shot__ph { display: none; }
 .shot__label {
   position: absolute; inset-inline-start: 0; bottom: 0; z-index: 2; padding: .5rem .9rem;
-  font-family: "El Messiri", sans-serif; font-weight: 700; font-size: .95rem; color: #fff;
+  font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: .95rem; color: #fff;
   background: linear-gradient(0deg, rgba(0,0,0,.6), transparent); width: 100%;
   opacity: 0; transform: translateY(6px); transition: .3s;
 }
