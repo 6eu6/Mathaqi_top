@@ -544,7 +544,7 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
 .footer__logo { height: 56px; width: auto; }
 .footer__logo.logo-light { display: var(--logo-light); }
 .footer__logo.logo-dark  { display: var(--logo-dark); }
-.footer h5 { font-family: "Marcellus", serif; letter-spacing: 2px; text-transform: uppercase; font-size: .74rem; color: var(--ink-faint); margin-bottom: 1rem; }
+.footer h5 { font-family: "Reem Kufi", sans-serif; font-weight: 600; letter-spacing: 0; font-size: 1rem; color: var(--ink); margin-bottom: 1rem; }
 .footer ul { list-style: none; display: grid; gap: .55rem; }
 .footer ul a { color: var(--ink-soft); }
 .footer ul a:hover { color: var(--gold-deep); }
