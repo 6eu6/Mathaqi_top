@@ -426,6 +426,36 @@ html[data-theme="dark"] .offer--disc .big { color: var(--gold-soft); }
 .dish h3 { font-size: 1.15rem; margin-top: 1rem; }
 .dish span { display: block; font-family: "Marcellus", serif; letter-spacing: 2px; text-transform: uppercase; font-size: .6rem; color: var(--ink-faint); }
 
+/* ----------  Reviews  ---------- */
+.reviews-lead {
+  display: grid; grid-template-columns: 1fr auto; gap: 1.6rem; align-items: center;
+  border-radius: 24px; padding: clamp(1.6rem,3.5vw,2.6rem);
+  background: linear-gradient(135deg, #1c130b, #2a1c0f); color: #f3e9d8;
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, #3a2a16); box-shadow: var(--shadow); margin-bottom: 1.8rem;
+}
+.reviews-lead__score { display: flex; align-items: center; gap: 1.2rem; }
+.reviews-lead__num { font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: clamp(2.6rem,7vw,3.6rem); color: var(--gold-soft); line-height: 1; }
+.reviews-lead__stars { display: flex; gap: .15rem; color: var(--gold-soft); }
+.reviews-lead__stars svg { width: 22px; height: 22px; }
+.reviews-lead__meta b { display: block; color: #fff; font-size: 1.1rem; font-family: "Reem Kufi", sans-serif; }
+.reviews-lead__meta span { color: #cbb89b; font-size: .9rem; }
+.reviews-lead__cta { display: flex; flex-direction: column; gap: .6rem; }
+.g-badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; color: #cbb89b; }
+.g-badge svg { width: 18px; height: 18px; }
+
+.rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+.rev-card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 1.7rem; box-shadow: var(--shadow-sm); transition: transform .3s, box-shadow .3s, border-color .3s; }
+.rev-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: color-mix(in oklab, var(--gold) 40%, var(--line)); }
+.rev-card__quote { position: absolute; inset-block-start: 1.1rem; inset-inline-end: 1.3rem; color: color-mix(in oklab, var(--gold) 45%, transparent); }
+.rev-card__quote svg { width: 34px; height: 34px; }
+.rev-card__stars { display: flex; gap: .12rem; color: var(--gold); margin-bottom: .8rem; }
+.rev-card__stars svg { width: 17px; height: 17px; }
+.rev-card p { color: var(--ink-soft); font-size: .96rem; line-height: 1.8; margin-bottom: 1.2rem; }
+.rev-card__author { display: flex; align-items: center; gap: .7rem; }
+.rev-card__avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: "Reem Kufi", sans-serif; font-weight: 700; color: #1c1305; background: var(--grad-gold); }
+.rev-card__who b { display: block; font-size: .98rem; }
+.rev-card__who span { font-size: .78rem; color: var(--ink-faint); }
+
 /* ----------  Gallery (legacy placeholder)  ---------- */
 .gallery { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 150px; gap: 1rem; }
 .shot {
@@ -519,6 +549,10 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
   .offer-feature { grid-template-columns: 1fr; }
   .offer-feature__art { min-height: 220px; order: -1; }
   .dishes { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+  .rev-grid { grid-template-columns: 1fr; }
+  .reviews-lead { grid-template-columns: 1fr; text-align: center; }
+  .reviews-lead__score { justify-content: center; }
+  .reviews-lead__cta { align-items: center; }
   .contact__grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 130px; }

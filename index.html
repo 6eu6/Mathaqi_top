@@ -125,6 +125,9 @@
       <path d="M8 3v8M6 3v5a2 2 0 0 0 4 0V3M8 11v10"/><path d="M16 3c-1.5 0-2.5 2-2.5 5s1 3.5 2.5 3.5V21"/>
     </g>
     <g id="ic-diamond" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l3 4-3 4-3-4 3-4Z"/></g>
+    <g id="ic-star" fill="currentColor" stroke="none"><path d="M12 2.6l2.6 5.7 6.2.6-4.7 4.1 1.4 6.1L12 15.9 6.5 19.1l1.4-6.1L3.2 8.9l6.2-.6L12 2.6Z"/></g>
+    <g id="ic-quote" fill="currentColor" stroke="none"><path d="M9.5 6C6.5 7.3 5 9.7 5 13.2V18h5v-5H7.7c0-2 .9-3.3 2.8-4L9.5 6Zm9 0c-3 1.3-4.5 3.7-4.5 7.2V18h5v-5h-2.3c0-2 .9-3.3 2.8-4L18.5 6Z"/></g>
+    <g id="ic-google" fill="none"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z" fill="#4285F4"/><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 .9-3.4.9-2.6 0-4.8-1.7-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z" fill="#34A853"/><path d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3.1a10 10 0 0 0 0 9l3.3-2.6Z" fill="#FBBC05"/><path d="M12 6.1c1.5 0 2.8.5 3.8 1.5l2.8-2.8A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6.1 12 6.1Z" fill="#EA4335"/></g>
   </defs>
 </svg>
 
@@ -145,6 +148,7 @@
       <a href="#offers">العروض</a>
       <a href="#menu">المنيو</a>
       <a href="#dishes">أطباقنا</a>
+      <a href="#reviews">الآراء</a>
       <a href="#contact">تواصل معنا</a>
     </nav>
 
@@ -524,6 +528,54 @@
   </div>
 </section>
 
+<!-- ===================== REVIEWS ===================== -->
+<section class="section" id="reviews" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">آراء الزبائن</span>
+      <h2>ماذا يقول زبائننا</h2>
+      <p>رضاكم غايتنا — شاركونا تجربتكم وتقييمكم على خرائط جوجل.</p>
+    </div>
+
+    <div class="reviews-lead reveal">
+      <div class="reviews-lead__score">
+        <div>
+          <div class="reviews-lead__stars" style="margin-bottom:.5rem">
+            <svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg>
+          </div>
+          <div class="reviews-lead__meta"><b>تجربتك تهمّنا</b><span class="g-badge"><svg><use href="#ic-google"/></svg> قيّمنا واقرأ التقييمات على خرائط جوجل</span></div>
+        </div>
+      </div>
+      <div class="reviews-lead__cta">
+        <a class="btn" href="https://maps.app.goo.gl/gJ9Fp4Zu8NTLTEW49" target="_blank" rel="noopener"><svg><use href="#ic-star"/></svg> أضف تقييمك</a>
+        <a class="btn btn--ghost" href="https://maps.app.goo.gl/gJ9Fp4Zu8NTLTEW49" target="_blank" rel="noopener" style="--_fg:#f3e9d8;border-color:color-mix(in oklab,var(--gold) 45%,#4a3820)"><svg><use href="#ic-pin"/></svg> اقرأ التقييمات</a>
+      </div>
+    </div>
+
+    <div class="rev-grid">
+      <article class="rev-card reveal">
+        <span class="rev-card__quote"><svg><use href="#ic-quote"/></svg></span>
+        <div class="rev-card__stars"><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg></div>
+        <p>شاورما الفحم من ألذ ما ذقت في الحديدة — نكهة مميزة وخدمة توصيل سريعة. أنصح بها بشدة.</p>
+        <div class="rev-card__author"><span class="rev-card__avatar">ز</span><div class="rev-card__who"><b>زبون مذاقي توب</b><span>تقييم على جوجل</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <span class="rev-card__quote"><svg><use href="#ic-quote"/></svg></span>
+        <div class="rev-card__stars"><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg></div>
+        <p>البروست مقرمش وطازج والصوصات رهيبة، والأسعار مناسبة جداً. عروض الخميس والجمعة تستاهل.</p>
+        <div class="rev-card__author"><span class="rev-card__avatar">م</span><div class="rev-card__who"><b>زبون مذاقي توب</b><span>تقييم على جوجل</span></div></div>
+      </article>
+      <article class="rev-card reveal">
+        <span class="rev-card__quote"><svg><use href="#ic-quote"/></svg></span>
+        <div class="rev-card__stars"><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg></div>
+        <p>مكان نظيف ووجبات لذيذة، البيتزا والزنجر خيالية. صاروا وجهتي المفضلة مع العائلة.</p>
+        <div class="rev-card__author"><span class="rev-card__avatar">أ</span><div class="rev-card__who"><b>زبون مذاقي توب</b><span>تقييم على جوجل</span></div></div>
+      </article>
+    </div>
+    <p style="text-align:center;margin-top:1.6rem;font-size:.8rem;color:var(--ink-faint)">* نماذج توضيحية — تُستبدل بتقييمات زبائنكم الفعلية من خرائط جوجل عند تزويدنا بها.</p>
+  </div>
+</section>
+
 <!-- ===================== CONTACT ===================== -->
 <section class="section" id="contact" style="background:var(--bg-2)">
   <div class="wrap">
@@ -536,7 +588,7 @@
       <div class="contact__card reveal">
         <div class="info-row">
           <span class="info-row__icon"><svg><use href="#ic-pin"/></svg></span>
-          <div><h4>العنوان</h4><p>الحديدة — شارع صنعاء، أمام كلية الشفاء</p></div>
+          <div><h4>العنوان</h4><p>الحديدة — شارع صنعاء، أمام كلية الشفاء</p><p style="font-weight:400;font-size:.82rem;color:var(--ink-faint);direction:ltr;text-align:start">Plus Code: QXR7+M37</p></div>
         </div>
         <div class="info-row">
           <span class="info-row__icon"><svg><use href="#ic-phone"/></svg></span>
@@ -554,14 +606,14 @@
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem">
           <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اتصل الآن</a>
-          <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=%D9%85%D8%B7%D8%B9%D9%85+%D9%85%D8%B0%D8%A7%D9%82%D9%8A+%D8%AA%D9%88%D8%A8+%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AF%D8%A9+%D9%83%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D8%B4%D9%81%D8%A7%D8%A1" target="_blank" rel="noopener"><svg><use href="#ic-pin"/></svg> الاتجاهات</a>
+          <a class="btn btn--ghost" href="https://maps.app.goo.gl/gJ9Fp4Zu8NTLTEW49" target="_blank" rel="noopener"><svg><use href="#ic-pin"/></svg> الاتجاهات على جوجل</a>
         </div>
       </div>
 
       <div class="contact__map reveal">
-        <iframe title="موقع مذاقي توب على الخريطة — الحديدة"
+        <iframe title="موقع مذاقي توب على الخريطة — الحديدة، أمام كلية الشفاء"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=42.925%2C14.780%2C42.985%2C14.815&layer=mapnik&marker=14.7975%2C42.9545"></iframe>
+          src="https://www.openstreetmap.org/export/embed.html?bbox=42.9547%2C14.7857%2C42.9707%2C14.7977&layer=mapnik&marker=14.79169%2C42.96269"></iframe>
       </div>
     </div>
   </div>
