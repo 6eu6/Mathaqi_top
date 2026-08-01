@@ -104,11 +104,10 @@ h2 { font-weight: 600; }
 
 .kicker {
   display: inline-flex; align-items: center; gap: .55rem;
-  font-family: "Marcellus", serif; letter-spacing: 4px; text-transform: uppercase;
-  font-size: .72rem; color: var(--gold-deep);
+  font-family: "Reem Kufi", sans-serif; font-weight: 600; letter-spacing: 0;
+  font-size: .9rem; color: var(--gold-deep);
 }
 html[data-theme="dark"] .kicker { color: var(--gold-soft); }
-.kicker::before { content: ""; width: 26px; height: 1px; background: var(--gold); opacity: .8; }
 
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
 .section-head h2 { font-size: clamp(1.9rem, 4.6vw, 3rem); margin: .6rem 0 .5rem; }
@@ -382,7 +381,7 @@ html[data-theme="dark"] .cat__icon { color: var(--gold-soft); }
 .cat__title { flex: 1; }
 .cat__title h3 { font-size: 1.3rem; }
 .cat__title span { font-family: "Marcellus", serif; letter-spacing: 2px; text-transform: uppercase; font-size: .62rem; color: var(--ink-faint); }
-.cat__cols { display: flex; gap: .4rem; font-size: .68rem; color: var(--ink-faint); font-family: "Marcellus", serif; letter-spacing: 1px; }
+.cat__cols { display: flex; gap: .4rem; font-size: .72rem; color: var(--ink-faint); font-family: "Reem Kufi", sans-serif; letter-spacing: 0; }
 .cat__cols b { width: 3.4rem; text-align: center; }
 
 .item { display: flex; align-items: baseline; gap: .8rem; padding: .5rem 0; }
@@ -553,7 +552,7 @@ html[data-theme="dark"] .shot { color: var(--gold-soft); }
 .info-row__icon { width: 46px; height: 46px; flex: none; border-radius: 12px; display: grid; place-items: center; color: var(--gold-deep); background: color-mix(in oklab, var(--gold) 13%, transparent); border: 1px solid color-mix(in oklab, var(--gold) 26%, transparent); }
 html[data-theme="dark"] .info-row__icon { color: var(--gold-soft); }
 .info-row__icon svg { width: 22px; height: 22px; }
-.info-row h4 { font-size: .78rem; font-family: "Marcellus", serif; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: .2rem; }
+.info-row h4 { font-size: .88rem; font-family: "Reem Kufi", sans-serif; font-weight: 500; letter-spacing: 0; color: var(--ink-faint); margin-bottom: .25rem; }
 .info-row p, .info-row a { font-weight: 700; font-size: 1.05rem; }
 .info-row a { direction: ltr; display: inline-block; }
 .info-row a:hover { color: var(--gold-deep); }
