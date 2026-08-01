@@ -221,7 +221,8 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
   }
   .nav__toggle svg { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .3s ease, transform .3s ease; }
   .nav__toggle .i-close { opacity: 0; transform: rotate(-45deg) scale(.4); }
-  .nav__toggle[aria-expanded="true"] { background: transparent; border-color: transparent; color: var(--gold-soft); }
+  .nav__toggle[aria-expanded="true"] { background: transparent; border-color: transparent; color: var(--gold-deep); }
+  html[data-theme="dark"] .nav__toggle[aria-expanded="true"] { color: var(--gold-soft); }
   .nav__toggle[aria-expanded="true"] .i-bars { opacity: 0; transform: rotate(45deg) scale(.4); }
   .nav__toggle[aria-expanded="true"] .i-close { opacity: 1; transform: rotate(0) scale(1); }
 
@@ -231,17 +232,22 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem;
     padding: 5rem 1.5rem 3rem;
     background:
-      radial-gradient(120% 75% at 12% 8%, rgba(199,154,59,.22), transparent 55%),
-      linear-gradient(155deg, #1a1108 0%, #2a1c10 58%, #17100a 100%);
-    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+      radial-gradient(120% 75% at 12% 8%, rgba(199,154,59,.20), transparent 55%),
+      linear-gradient(155deg, var(--bg) 0%, var(--bg-2) 100%);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
     clip-path: circle(0px at 40px 44px);
     transition: clip-path .55s cubic-bezier(.25,.46,.45,.94);
     pointer-events: none;
   }
+  html[data-theme="dark"] .nav__links {
+    background:
+      radial-gradient(120% 75% at 12% 8%, rgba(199,154,59,.22), transparent 55%),
+      linear-gradient(155deg, #1a1108 0%, #2a1c10 58%, #17100a 100%);
+  }
   .nav__links.open { clip-path: circle(150% at 40px 44px); pointer-events: auto; }
 
   .nav__links a {
-    color: #f3e9d8; font-family: "Reem Kufi", sans-serif; font-weight: 600;
+    color: var(--ink); font-family: "Reem Kufi", sans-serif; font-weight: 600;
     font-size: clamp(1.7rem, 7.6vw, 2.5rem); line-height: 1.4; padding: .35rem 1rem;
     position: relative; opacity: 0; transform: translateX(46px);
     transition: opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1), color .25s;
@@ -563,6 +569,19 @@ html[data-theme="dark"] .info-row__icon { color: var(--gold-soft); }
 html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9) hue-rotate(180deg) contrast(.9); }
 .hours-badge { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.2rem; padding: .5rem 1rem; border-radius: 999px; background: color-mix(in oklab, var(--gold) 14%, transparent); border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent); font-weight: 700; font-size: .9rem; }
 .hours-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: #4caf6d; box-shadow: 0 0 0 4px rgba(76,175,109,.2); }
+
+/* dynamic open-now badge */
+.open-badge { display: inline-flex; align-items: center; gap: .5rem; margin-top: .7rem; padding: .35rem .9rem; border-radius: 999px; font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: .85rem; }
+.open-badge[hidden] { display: none; }
+.open-badge .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.open-badge.is-open { background: color-mix(in oklab, #4caf6d 18%, transparent); color: #2e7d4f; }
+html[data-theme="dark"] .open-badge.is-open { color: #86dca2; }
+.open-badge.is-open .dot { background: #4caf6d; box-shadow: 0 0 0 4px rgba(76,175,109,.22); animation: opulse 2s infinite; }
+@keyframes opulse { 0%,100% { box-shadow: 0 0 0 3px rgba(76,175,109,.28); } 50% { box-shadow: 0 0 0 5px rgba(76,175,109,.12); } }
+.open-badge.is-closed { background: color-mix(in oklab, var(--ember) 16%, transparent); color: #b04a26; }
+html[data-theme="dark"] .open-badge.is-closed { color: #e0916f; }
+.open-badge.is-closed .dot { background: var(--ember); }
+@media (prefers-reduced-motion: reduce) { .open-badge.is-open .dot { animation: none; } }
 
 /* ----------  CTA banner  ---------- */
 .cta-banner { text-align: center; border-radius: 28px; padding: clamp(2.4rem,5vw,4rem); position: relative; overflow: hidden;

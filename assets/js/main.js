@@ -192,6 +192,23 @@
     } else { render(); start(); }
   })();
 
+  /* ---------- Open-now badge (Yemen time, UTC+3, 16:00–00:00 daily) ---------- */
+  (function () {
+    var el = document.querySelector("[data-open-badge]");
+    if (!el) return;
+    function render() {
+      var now = new Date();
+      var h = (now.getUTCHours() + 3) % 24;      // Yemen has no DST
+      var m = now.getUTCMinutes();
+      var open = h >= 16;                          // open 16:00 until midnight
+      el.className = "open-badge " + (open ? "is-open" : "is-closed");
+      el.innerHTML = '<span class="dot"></span>' + (open ? "مفتوح الآن" : "مغلق — نفتح ٤ عصراً");
+      el.removeAttribute("hidden");
+    }
+    render();
+    setInterval(render, 60000);
+  })();
+
   /* ---------- Year ---------- */
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
