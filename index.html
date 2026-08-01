@@ -141,10 +141,10 @@
 
     <nav class="nav__links" aria-label="التنقّل الرئيسي">
       <a href="#home">الرئيسية</a>
-      <a href="#features">لماذا نحن</a>
       <a href="#signature">الطبق المميّز</a>
+      <a href="#offers">العروض</a>
       <a href="#menu">المنيو</a>
-      <a href="#gallery">المعرض</a>
+      <a href="#dishes">أطباقنا</a>
       <a href="#contact">تواصل معنا</a>
     </nav>
 
@@ -256,32 +256,88 @@
           <a class="btn" href="#menu"><svg><use href="#ic-utensils"/></svg> شاهد كل الأصناف</a>
         </div>
       </div>
-      <div class="signature__flame">
-        <svg viewBox="0 0 200 220" aria-hidden="true">
-          <g class="flame-flicker">
-            <path d="M100 12c14 30 44 40 44 78a44 44 0 0 1-88 0c0-16 7-27 7-27s5 12 15 16C67 51 78 33 100 12Z"
-                  fill="url(#fg1)"/>
-            <path d="M100 52c8 18 24 25 24 46a24 24 0 0 1-48 0c0-11 6-18 6-18s3 8 9 10c-3-14 1-26 9-38Z"
-                  fill="url(#fg2)"/>
-          </g>
-          <!-- skewer + charcoal -->
-          <rect x="40" y="176" width="120" height="8" rx="4" fill="#e2c165" opacity=".9"/>
-          <path d="M40 200h120" stroke="#7a4a2b" stroke-width="10" stroke-linecap="round"/>
-          <g fill="#3a2416">
-            <circle cx="60" cy="200" r="7"/><circle cx="82" cy="201" r="6"/><circle cx="104" cy="199" r="7"/>
-            <circle cx="126" cy="201" r="6"/><circle cx="146" cy="200" r="6"/>
-          </g>
-          <g fill="#e88a3c" opacity=".9"><circle cx="70" cy="198" r="1.6"/><circle cx="112" cy="197" r="1.4"/><circle cx="138" cy="199" r="1.5"/></g>
-          <defs>
-            <linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#f4b23c"/><stop offset=".55" stop-color="#e2762a"/><stop offset="1" stop-color="#c1441f"/>
-            </linearGradient>
-            <linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#f4a63c"/>
-            </linearGradient>
-          </defs>
-        </svg>
+      <div class="signature__photo">
+        <span class="signature__glow"></span>
+        <svg class="signature__spark" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-flame"/></svg>
+        <img src="assets/img/food/shawarma-hero.webp" alt="شاورما عربي دجاج على الفحم من مذاقي توب" loading="lazy" />
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OFFERS ===================== -->
+<section class="section" id="offers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">وفّر أكثر</span>
+      <h2>عروض مذاقي توب</h2>
+      <p>عروض الخميس والجمعة وأكثر — جودة عالية بأسعار أقل. الأسعار بالريال اليمني ﷼.</p>
+    </div>
+
+    <!-- featured Thursday/Friday combos -->
+    <div class="offer-feature reveal">
+      <div class="offer-feature__body">
+        <span class="offer__badge">🔥 عرض الخميس والجمعة</span>
+        <h3>وجبتك المفضّلة بسعر أقل</h3>
+        <div class="combo">
+          <div class="combo__row">
+            <span class="combo__tag">١</span>
+            <span class="combo__info"><b>زنجر أو فاهيتا + شاورما عربي + برجر دجاج</b><span>ثلاث وجبات في عرض واحد</span></span>
+            <span class="combo__price"><span class="old">2650 ﷼</span><span class="new">2000 ﷼</span></span>
+          </div>
+          <div class="combo__row">
+            <span class="combo__tag">٢</span>
+            <span class="combo__info"><b>زنجر أو فاهيتا + شاورما عربي + برجر لحم</b><span>ثلاث وجبات في عرض واحد</span></span>
+            <span class="combo__price"><span class="old">2800 ﷼</span><span class="new">2300 ﷼</span></span>
+          </div>
+        </div>
+        <div style="margin-top:1.6rem"><a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a></div>
+      </div>
+      <div class="offer-feature__art">
+        <img src="assets/img/food/shawarma-hero.webp" alt="عرض شاورما على الفحم" loading="lazy" />
+      </div>
+    </div>
+
+    <!-- offers grid -->
+    <div class="offers-grid">
+      <article class="offer reveal">
+        <span class="offer__badge">الثالث مجاناً</span>
+        <h3>٣ برجر لحم</h3>
+        <p>اشترِ ٢ والثالث علينا — لحم طازج.</p>
+        <div class="offer__price"><span class="old">3000</span><span class="new">2000 <span class="cur">﷼</span></span></div>
+        <img class="offer__img" src="assets/img/food/burger.webp" alt="برجر لحم" loading="lazy" />
+      </article>
+
+      <article class="offer reveal">
+        <span class="offer__badge">الثالث مجاناً</span>
+        <h3>٣ برجر دجاج</h3>
+        <p>اشترِ ٢ والثالث علينا — دجاج مشوي.</p>
+        <div class="offer__price"><span class="old">2250</span><span class="new">1500 <span class="cur">﷼</span></span></div>
+        <img class="offer__img" src="assets/img/food/chkburger.webp" alt="برجر دجاج" loading="lazy" />
+      </article>
+
+      <article class="offer reveal">
+        <span class="offer__badge gold">برجر + عصير</span>
+        <h3>برجر وعصير فراولة</h3>
+        <p>إثنين برجر عليك وإثنين عصير فراولة علينا.</p>
+        <div class="offer__price"><span class="new">يبدأ 1500 <span class="cur">﷼</span></span></div>
+        <img class="offer__img" src="assets/img/food/zinger.webp" alt="عرض برجر وعصير" loading="lazy" />
+      </article>
+
+      <article class="offer reveal offer--wide">
+        <span class="offer__badge">كومبو العائلة</span>
+        <h3>بيتزا خضار + قطعتين بروست + برجر دجاج</h3>
+        <p>وجبة متكاملة تكفي المجموعة — عرض الخميس والجمعة.</p>
+        <div class="offer__price"><span class="old">4000</span><span class="new">3000 <span class="cur">﷼</span></span></div>
+        <img class="offer__img" src="assets/img/food/broast.webp" alt="كومبو العائلة" loading="lazy" style="width:9.5rem" />
+      </article>
+
+      <article class="offer reveal offer--disc">
+        <span class="offer__badge gold">لطلاب الثانوية</span>
+        <div class="big">20%</div>
+        <h3 style="margin-top:.4rem">خصم خاص</h3>
+        <p style="max-width:20ch">سارع بالاستفادة من العروض — خصم ٢٠٪ لطلاب الثانوية.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -418,22 +474,39 @@
   </div>
 </section>
 
-<!-- ===================== GALLERY ===================== -->
-<section class="section" id="gallery">
+<!-- ===================== DISHES ===================== -->
+<section class="section" id="dishes">
   <div class="wrap">
     <div class="section-head">
       <span class="kicker">من مطبخنا</span>
-      <h2>معرض الأطباق</h2>
-      <p>لمحات من أطباقنا الطازجة. الصور تُضاف قريباً من حسابنا على إنستقرام.</p>
+      <h2>أطباقنا الأكثر طلباً</h2>
+      <p>لقطات حقيقية من مطبخ مذاقي توب — طازجة ومحضّرة بحب.</p>
     </div>
-    <div class="gallery">
-      <!-- Drop real photos into assets/img/food/ with these names to fill the slots -->
-      <figure class="shot"><img src="assets/img/food/shawarma.jpg" alt="شاورma ع الفحم" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-shawarma"/></svg><span>Shawarma</span></div><figcaption class="shot__label">شاورما ع الفحم</figcaption></figure>
-      <figure class="shot"><img src="assets/img/food/pizza.jpg" alt="بيتزا مذاقي" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-pizza"/></svg><span>Pizza</span></div><figcaption class="shot__label">بيتزا مذاقي</figcaption></figure>
-      <figure class="shot"><img src="assets/img/food/burger.jpg" alt="برجر لحم" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-burger"/></svg><span>Burger</span></div><figcaption class="shot__label">برجر لحم</figcaption></figure>
-      <figure class="shot"><img src="assets/img/food/broast.jpg" alt="بروست" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-broast"/></svg><span>Broast</span></div><figcaption class="shot__label">بروست مقرمش</figcaption></figure>
-      <figure class="shot"><img src="assets/img/food/zinger.jpg" alt="زنجر" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-zinger"/></svg><span>Zinger</span></div><figcaption class="shot__label">زنجر سبيشل</figcaption></figure>
-      <figure class="shot"><img src="assets/img/food/fajita.jpg" alt="فاهيتا" loading="lazy" /><div class="shot__ph"><svg><use href="#ic-fajita"/></svg><span>Fajita</span></div><figcaption class="shot__label">فاهيتا عربي</figcaption></figure>
+    <div class="dishes">
+      <figure class="dish reveal">
+        <div class="dish__disc"><span class="dish__ring"></span><img src="assets/img/food/shawarma.webp" alt="شاورما عربي على الفحم" loading="lazy" /></div>
+        <h3>شاورما ع الفحم</h3><span>Charcoal Shawarma</span>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish__disc"><span class="dish__ring"></span><img src="assets/img/food/zinger.webp" alt="ساندوتش زنجر" loading="lazy" /></div>
+        <h3>زنجر سبيشل</h3><span>Zinger</span>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish__disc dish--cover"><span class="dish__ring"></span><img src="assets/img/food/pizza.webp" alt="بيتزا الخضار" loading="lazy" /></div>
+        <h3>بيتزا مذاقي</h3><span>Pizza</span>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish__disc"><span class="dish__ring"></span><img src="assets/img/food/burger.webp" alt="برجر لحم" loading="lazy" /></div>
+        <h3>برجر لحم</h3><span>Beef Burger</span>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish__disc dish--cover"><span class="dish__ring"></span><img src="assets/img/food/broast.webp" alt="بروست دجاج" loading="lazy" /></div>
+        <h3>بروست مقرمش</h3><span>Broast</span>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish__disc"><span class="dish__ring"></span><img src="assets/img/food/chkburger.webp" alt="برجر دجاج" loading="lazy" /></div>
+        <h3>برجر دجاج</h3><span>Chicken Burger</span>
+      </figure>
     </div>
   </div>
 </section>
@@ -509,9 +582,9 @@
       <div>
         <h5>روابط سريعة</h5>
         <ul>
+          <li><a href="#offers">العروض</a></li>
           <li><a href="#menu">المنيو</a></li>
-          <li><a href="#signature">الطبق المميّز</a></li>
-          <li><a href="#gallery">المعرض</a></li>
+          <li><a href="#dishes">أطباقنا</a></li>
           <li><a href="#contact">تواصل معنا</a></li>
         </ul>
       </div>

@@ -348,7 +348,82 @@ html[data-theme="dark"] .item__price { color: var(--gold-soft); }
 .item__price.two { display: inline-flex; gap: .9rem; }
 .item__price.two b { width: 3.4rem; text-align: center; display: inline-block; }
 
-/* ----------  Gallery  ---------- */
+/* ----------  Signature real photo  ---------- */
+.signature__photo { position: relative; display: grid; place-items: center;
+  background: radial-gradient(60% 60% at 50% 60%, rgba(193,91,52,.30), transparent 72%); }
+.signature__photo img { width: min(86%, 340px); height: auto; filter: drop-shadow(0 24px 34px rgba(0,0,0,.55)); transform: rotate(-6deg); transition: transform .5s ease; }
+.signature__photo:hover img { transform: rotate(-3deg) scale(1.04); }
+.signature__glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(40% 30% at 50% 78%, rgba(244,166,60,.35), transparent 70%); }
+.signature__spark { position: absolute; bottom: 8%; inset-inline-start: 12%; width: 46px; color: var(--gold-soft); opacity: .8; animation: flicker 2.6s ease-in-out infinite; }
+
+/* ----------  Offers  ---------- */
+.offer-feature {
+  display: grid; grid-template-columns: 1fr .9fr; gap: 0; border-radius: 28px; overflow: hidden;
+  background: linear-gradient(135deg, #1c130b, #2a1c0f); color: #f3e9d8;
+  border: 1px solid color-mix(in oklab, var(--gold) 32%, #3a2a16); box-shadow: var(--shadow); margin-bottom: 1.6rem;
+}
+.offer-feature__body { padding: clamp(1.8rem, 4vw, 3.2rem); }
+.offer-feature__body h3 { color: #fff; font-size: clamp(1.6rem, 3.6vw, 2.3rem); margin: .6rem 0 1.3rem; }
+.combo { display: grid; gap: .9rem; }
+.combo__row { display: flex; align-items: center; gap: 1rem; padding: .9rem 1.1rem; border-radius: 16px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(226,193,101,.22); }
+.combo__tag { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--gold); color: #1c1305; font-family: "El Messiri", sans-serif; font-weight: 700; }
+.combo__info { flex: 1; }
+.combo__info b { display: block; color: #fff; font-size: 1.05rem; }
+.combo__info span { color: #cbb89b; font-size: .86rem; }
+.combo__price { text-align: center; }
+.combo__price .old { color: #9c8a72; text-decoration: line-through; font-size: .82rem; display: block; }
+.combo__price .new { font-family: "El Messiri", sans-serif; font-weight: 700; color: var(--gold-soft); font-size: 1.35rem; }
+.offer-feature__art { position: relative; display: grid; place-items: center; min-height: 260px;
+  background: radial-gradient(60% 60% at 50% 55%, rgba(193,91,52,.30), transparent 72%); }
+.offer-feature__art img { width: min(84%, 320px); filter: drop-shadow(0 22px 30px rgba(0,0,0,.5)); transform: rotate(-7deg); }
+
+.offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+.offer {
+  position: relative; overflow: hidden; border-radius: 22px; padding: 1.7rem; padding-inline-end: 8.5rem;
+  min-height: 210px; background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.offer:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: color-mix(in oklab, var(--gold) 45%, var(--line)); }
+.offer__badge { display: inline-flex; align-items: center; gap: .4rem; padding: .32rem .8rem; border-radius: 999px;
+  background: var(--ember); color: #fff; font-weight: 700; font-size: .74rem; margin-bottom: .9rem; box-shadow: 0 8px 18px -10px rgba(193,91,52,.9); }
+.offer__badge.gold { background: var(--gold); color: #1c1305; box-shadow: 0 8px 18px -10px rgba(199,154,59,.9); }
+.offer h3 { font-size: 1.25rem; margin-bottom: .4rem; }
+.offer p { color: var(--ink-soft); font-size: .9rem; margin-bottom: 1rem; max-width: 22ch; }
+.offer__price { display: flex; align-items: baseline; gap: .6rem; }
+.offer__price .old { color: var(--ink-faint); text-decoration: line-through; font-size: .95rem; }
+.offer__price .new { font-family: "El Messiri", sans-serif; font-weight: 700; color: var(--gold-deep); font-size: 1.7rem; }
+html[data-theme="dark"] .offer__price .new { color: var(--gold-soft); }
+.offer__price .cur { font-size: .7em; color: var(--ink-faint); }
+.offer__img { position: absolute; inset-inline-end: -.6rem; bottom: -.4rem; width: 8.4rem; height: auto;
+  filter: drop-shadow(0 14px 20px rgba(0,0,0,.28)); transform: rotate(-6deg); transition: transform .4s ease; pointer-events: none; }
+.offer:hover .offer__img { transform: rotate(-2deg) scale(1.06); }
+.offer--wide { grid-column: span 2; }
+.offer--disc { text-align: center; padding-inline: 1.7rem; display: grid; place-items: center; }
+.offer--disc .big { font-family: "El Messiri", sans-serif; font-weight: 700; font-size: 3.2rem; color: var(--gold-deep); line-height: 1; }
+html[data-theme="dark"] .offer--disc .big { color: var(--gold-soft); }
+
+/* ----------  Dishes showcase  ---------- */
+.dishes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+.dish { text-align: center; }
+.dish__disc {
+  position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 50% 38%, var(--panel), var(--panel-2) 68%, var(--bg-2));
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm), inset 0 0 0 6px color-mix(in oklab, var(--gold) 10%, transparent);
+  transition: transform .35s, box-shadow .35s, border-color .35s;
+}
+.dish:hover .dish__disc { transform: translateY(-6px); border-color: color-mix(in oklab, var(--gold) 55%, var(--line));
+  box-shadow: var(--shadow), 0 0 0 4px color-mix(in oklab, var(--gold) 20%, transparent); }
+.dish__disc img { width: 84%; height: 84%; object-fit: contain; transition: transform .45s ease; filter: drop-shadow(0 12px 16px rgba(0,0,0,.25)); }
+.dish--cover img { width: 100%; height: 100%; object-fit: cover; filter: none; }
+.dish:hover .dish__disc img { transform: scale(1.07); }
+.dish__ring { position: absolute; inset: 5%; border-radius: 50%; border: 1px dashed color-mix(in oklab, var(--gold) 40%, transparent); pointer-events: none; }
+.dish h3 { font-size: 1.15rem; margin-top: 1rem; }
+.dish span { display: block; font-family: "Marcellus", serif; letter-spacing: 2px; text-transform: uppercase; font-size: .6rem; color: var(--ink-faint); }
+
+/* ----------  Gallery (legacy placeholder)  ---------- */
 .gallery { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 150px; gap: 1rem; }
 .shot {
   position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
@@ -435,7 +510,12 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
   .features { grid-template-columns: repeat(2, 1fr); }
   .menu__grid { grid-template-columns: 1fr; }
   .signature__card { grid-template-columns: 1fr; }
-  .signature__flame { min-height: 240px; order: -1; }
+  .signature__flame, .signature__photo { min-height: 240px; order: -1; }
+  .offers-grid { grid-template-columns: repeat(2, 1fr); }
+  .offer--wide { grid-column: span 2; }
+  .offer-feature { grid-template-columns: 1fr; }
+  .offer-feature__art { min-height: 220px; order: -1; }
+  .dishes { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
   .contact__grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 130px; }
@@ -449,9 +529,15 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
   .hero__cta, .hero__phones, .kicker, .divider { justify-content: center; }
   .hero__sub { margin-inline: auto; }
 }
+@media (max-width: 760px) {
+  .offers-grid { grid-template-columns: 1fr; }
+  .offer--wide { grid-column: span 1; }
+  .offer { padding-inline-end: 7.5rem; }
+}
 @media (max-width: 540px) {
   .features { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; }
+  .dishes { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .shot:nth-child(n){ grid-column: span 1 !important; grid-row: span 1 !important; }
   .shot:nth-child(1){ grid-column: span 2 !important; grid-row: span 2 !important; }
