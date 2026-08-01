@@ -218,6 +218,7 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
     display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px;
     background: var(--panel); border: 1px solid var(--line); color: var(--ink); cursor: pointer;
     position: relative; z-index: 95; transition: background .3s, border-color .3s, color .3s;
+    transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden;
   }
   .nav__toggle svg { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .3s ease, transform .3s ease; }
   .nav__toggle .i-close { opacity: 0; transform: rotate(-45deg) scale(.4); }
@@ -234,8 +235,8 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
     background:
       radial-gradient(120% 75% at 12% 8%, rgba(199,154,59,.20), transparent 55%),
       linear-gradient(155deg, var(--bg) 0%, var(--bg-2) 100%);
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
     clip-path: circle(0px at 40px 44px);
+    will-change: clip-path;
     transition: clip-path .55s cubic-bezier(.25,.46,.45,.94);
     pointer-events: none;
   }
