@@ -196,11 +196,11 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--gold-soft); }
 .theme-toggle {
   width: 44px; height: 44px; border-radius: 50%; flex: none;
   display: grid; place-items: center; cursor: pointer;
-  background: var(--panel); border: 1px solid var(--line); color: var(--gold-deep);
-  transition: transform .3s, border-color .3s, color .3s, background .3s;
+  background: transparent; border: none; color: var(--gold-deep);
+  transition: transform .3s, color .3s;
 }
 html[data-theme="dark"] .theme-toggle { color: var(--gold-soft); }
-.theme-toggle:hover { transform: rotate(-18deg); border-color: var(--gold); }
+.theme-toggle:hover { transform: rotate(-18deg) scale(1.08); }
 .theme-toggle svg { width: 20px; height: 20px; }
 .theme-toggle .i-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .i-sun  { display: none; }
@@ -215,15 +215,13 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
 
   /* hamburger that morphs into an X */
   .nav__toggle {
-    display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px;
-    background: var(--panel); border: 1px solid var(--line); color: var(--ink); cursor: pointer;
-    position: relative; z-index: 95; transition: background .3s, border-color .3s, color .3s;
+    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px;
+    background: transparent; border: none; color: var(--ink); cursor: pointer;
+    position: relative; z-index: 95; transition: color .3s, transform .3s;
     transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden;
   }
-  .nav__toggle svg { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .3s ease, transform .3s ease; }
+  .nav__toggle svg { grid-area: 1 / 1; width: 26px; height: 26px; transition: opacity .3s ease, transform .3s ease; }
   .nav__toggle .i-close { opacity: 0; transform: rotate(-45deg) scale(.4); }
-  .nav__toggle[aria-expanded="true"] { color: var(--gold-deep); box-shadow: var(--shadow-sm); }
-  html[data-theme="dark"] .nav__toggle[aria-expanded="true"] { color: var(--gold-soft); }
   .nav__toggle[aria-expanded="true"] .i-bars { opacity: 0; transform: rotate(45deg) scale(.4); }
   .nav__toggle[aria-expanded="true"] .i-close { opacity: 1; transform: rotate(0) scale(1); }
 
