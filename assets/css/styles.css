@@ -108,6 +108,7 @@ html[data-theme="dark"] .kicker { color: var(--gold-soft); }
 /* ----------  Layout helpers  ---------- */
 .wrap { width: min(1160px, 92vw); margin-inline: auto; }
 .section { padding: clamp(4rem, 9vw, 7rem) 0; position: relative; }
+section[id], #home { scroll-margin-top: 78px; }
 .eyebrow-gold { color: var(--gold-deep); }
 html[data-theme="dark"] .eyebrow-gold { color: var(--gold-soft); }
 
@@ -209,8 +210,8 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
     padding: 5rem 1.2rem 2rem; transform: translateX(-100%); transition: transform .35s cubic-bezier(.2,.8,.2,1);
     box-shadow: var(--shadow); z-index: 55;
   }
-  html[dir="rtl"] .nav__links { inset: 0 auto 0 0; transform: translateX(100%); border-inline: none; border-inline-start: 1px solid var(--line); }
-  .nav__links.open { transform: translateX(0); }
+  html[dir="rtl"] .nav__links { inset: 0 0 0 auto; transform: translateX(100%); border-inline: none; border-inline-start: 1px solid var(--line); }
+  .nav__links.open { transform: translateX(0) !important; }
   .nav__links a { padding: .9rem 1rem; font-size: 1.1rem; }
   .nav__links a::after { inset-inline: 1rem; }
   .nav__cta { display: none; }
@@ -443,8 +444,25 @@ html[data-theme="dark"] .offer--disc .big { color: var(--gold-soft); }
 .g-badge { display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; color: #cbb89b; }
 .g-badge svg { width: 18px; height: 18px; }
 
-.rev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
-.rev-card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 1.7rem; box-shadow: var(--shadow-sm); transition: transform .3s, box-shadow .3s, border-color .3s; }
+/* dynamic carousel */
+.rev-carousel { position: relative; max-width: 860px; margin-inline: auto; }
+.rev-viewport { overflow: hidden; }
+.rev-track { display: flex; flex-wrap: wrap; gap: 1.3rem; }
+.rev-carousel.ready .rev-track { flex-wrap: nowrap; gap: 0; will-change: transform; transition: transform .55s cubic-bezier(.2,.8,.2,1); }
+.rev-carousel.ready .rev-card { flex: 0 0 100%; }
+.rev-carousel.ready .rev-card + .rev-card { margin-inline-start: 0; }
+.rev-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.6rem; }
+.rev-arrow { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: var(--panel); border: 1px solid var(--line); color: var(--gold-deep); transition: .25s; flex: none; }
+html[data-theme="dark"] .rev-arrow { color: var(--gold-soft); }
+.rev-arrow:hover { border-color: var(--gold); transform: translateY(-2px); }
+.rev-arrow svg { width: 20px; height: 20px; }
+.rev-dots { display: flex; gap: .5rem; }
+.rev-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); border: none; cursor: pointer; padding: 0; transition: .3s; }
+.rev-dot.active { background: var(--gold); width: 28px; border-radius: 5px; }
+.rev-carousel:not(.ready) .rev-controls { display: none; }
+
+.rev-card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 1.9rem; box-shadow: var(--shadow-sm); transition: transform .3s, box-shadow .3s, border-color .3s; }
 .rev-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: color-mix(in oklab, var(--gold) 40%, var(--line)); }
 .rev-card__quote { position: absolute; inset-block-start: 1.1rem; inset-inline-end: 1.3rem; color: color-mix(in oklab, var(--gold) 45%, transparent); }
 .rev-card__quote svg { width: 34px; height: 34px; }
@@ -570,6 +588,12 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
   .offers-grid { grid-template-columns: 1fr; }
   .offer--wide { grid-column: span 1; }
   .offer { padding-inline-end: 7.5rem; }
+  /* stack combo rows so meal text isn't squeezed */
+  .combo__row { flex-direction: column; align-items: stretch; text-align: center; gap: .7rem; }
+  .combo__tag { margin-inline: auto; }
+  .combo__info b { font-size: 1.02rem; }
+  .combo__price { display: flex; align-items: baseline; justify-content: center; gap: .7rem; }
+  .combo__price .old { display: inline; }
 }
 @media (max-width: 540px) {
   .features { grid-template-columns: 1fr; }
