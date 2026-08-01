@@ -221,7 +221,7 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
   }
   .nav__toggle svg { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .3s ease, transform .3s ease; }
   .nav__toggle .i-close { opacity: 0; transform: rotate(-45deg) scale(.4); }
-  .nav__toggle[aria-expanded="true"] { background: transparent; border-color: transparent; color: var(--gold-deep); }
+  .nav__toggle[aria-expanded="true"] { color: var(--gold-deep); box-shadow: var(--shadow-sm); }
   html[data-theme="dark"] .nav__toggle[aria-expanded="true"] { color: var(--gold-soft); }
   .nav__toggle[aria-expanded="true"] .i-bars { opacity: 0; transform: rotate(45deg) scale(.4); }
   .nav__toggle[aria-expanded="true"] .i-close { opacity: 1; transform: rotate(0) scale(1); }
