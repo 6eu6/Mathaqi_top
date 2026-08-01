@@ -248,7 +248,7 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
 
   .nav__links a {
     color: var(--ink); font-family: "Reem Kufi", sans-serif; font-weight: 600;
-    font-size: clamp(1.7rem, 7.6vw, 2.5rem); line-height: 1.4; padding: .35rem 1rem;
+    font-size: clamp(1.7rem, 7.6vw, 2.5rem); line-height: 1.4; padding: .4rem 1rem .75rem;
     position: relative; opacity: 0; transform: translateX(46px);
     transition: opacity .4s ease, transform .5s cubic-bezier(.2,.8,.2,1), color .25s;
   }
@@ -260,11 +260,12 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
   .nav__links.open a:nth-child(5) { transition-delay: .34s; }
   .nav__links.open a:nth-child(6) { transition-delay: .40s; }
   .nav__links.open a:nth-child(7) { transition-delay: .46s; }
-  .nav__links a:hover, .nav__links a.active { color: var(--gold-soft); }
+  .nav__links a:hover, .nav__links a.active { color: var(--gold-deep); }
+  html[data-theme="dark"] .nav__links a:hover, html[data-theme="dark"] .nav__links a.active { color: var(--gold-soft); }
   .nav__links a::after {
-    content: ""; position: absolute; left: 50%; bottom: .05rem; height: 3px; width: 46px;
-    background: var(--gold); border-radius: 3px; transform: translateX(-50%) scaleX(0);
-    transform-origin: center; transition: transform .3s ease; inset-inline: auto;
+    content: ""; position: absolute; left: 1rem; right: 1rem; bottom: .18rem; height: 3px;
+    background: var(--gold); border-radius: 3px; transform: scaleX(0);
+    transform-origin: center; transition: transform .35s ease;
   }
   .nav__links a:hover::after, .nav__links a.active::after { transform: translateX(-50%) scaleX(1); }
   body.nav-open { overflow: hidden; }
@@ -570,18 +571,30 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
 .hours-badge { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.2rem; padding: .5rem 1rem; border-radius: 999px; background: color-mix(in oklab, var(--gold) 14%, transparent); border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent); font-weight: 700; font-size: .9rem; }
 .hours-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: #4caf6d; box-shadow: 0 0 0 4px rgba(76,175,109,.2); }
 
-/* dynamic open-now badge */
-.open-badge { display: inline-flex; align-items: center; gap: .5rem; margin-top: .7rem; padding: .35rem .9rem; border-radius: 999px; font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: .85rem; }
+/* dynamic open-now badge — refined pill */
+.open-badge {
+  display: inline-flex; align-items: center; gap: .6rem; margin-top: .95rem;
+  padding: .48rem 1.05rem; border-radius: 999px;
+  font-family: "Reem Kufi", sans-serif; font-weight: 600; font-size: .84rem; letter-spacing: 0;
+  background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-soft);
+  box-shadow: var(--shadow-sm);
+}
 .open-badge[hidden] { display: none; }
-.open-badge .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
-.open-badge.is-open { background: color-mix(in oklab, #4caf6d 18%, transparent); color: #2e7d4f; }
-html[data-theme="dark"] .open-badge.is-open { color: #86dca2; }
-.open-badge.is-open .dot { background: #4caf6d; box-shadow: 0 0 0 4px rgba(76,175,109,.22); animation: opulse 2s infinite; }
-@keyframes opulse { 0%,100% { box-shadow: 0 0 0 3px rgba(76,175,109,.28); } 50% { box-shadow: 0 0 0 5px rgba(76,175,109,.12); } }
-.open-badge.is-closed { background: color-mix(in oklab, var(--ember) 16%, transparent); color: #b04a26; }
-html[data-theme="dark"] .open-badge.is-closed { color: #e0916f; }
-.open-badge.is-closed .dot { background: var(--ember); }
-@media (prefers-reduced-motion: reduce) { .open-badge.is-open .dot { animation: none; } }
+.open-badge .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.open-badge.is-open {
+  color: #2f8a57; border-color: color-mix(in oklab, #4caf6d 32%, var(--line));
+  background: color-mix(in oklab, #4caf6d 9%, var(--panel));
+}
+html[data-theme="dark"] .open-badge.is-open { color: #8fdca6; background: color-mix(in oklab, #4caf6d 12%, var(--panel)); }
+.open-badge.is-open .dot { background: #4caf6d; }
+.open-badge.is-open .dot::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 1.5px solid #4caf6d;
+  opacity: .5; animation: opring 1.9s ease-out infinite;
+}
+@keyframes opring { 0% { transform: scale(.55); opacity: .6; } 100% { transform: scale(1.6); opacity: 0; } }
+.open-badge.is-closed { color: var(--ink-faint); }
+.open-badge.is-closed .dot { background: var(--ink-faint); }
+@media (prefers-reduced-motion: reduce) { .open-badge.is-open .dot::after { animation: none; } }
 
 /* ----------  CTA banner  ---------- */
 .cta-banner { text-align: center; border-radius: 28px; padding: clamp(2.4rem,5vw,4rem); position: relative; overflow: hidden;
