@@ -480,6 +480,7 @@ html[data-theme="dark"] .offer--disc .big { color: var(--gold-soft); }
 .reviews-lead__num { font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: clamp(2.6rem,7vw,3.6rem); color: var(--gold-soft); line-height: 1; }
 .reviews-lead__stars { display: flex; gap: .15rem; color: var(--gold-soft); }
 .reviews-lead__stars svg { width: 22px; height: 22px; }
+.reviews-lead__stars svg.dim { opacity: .3; }
 .reviews-lead__meta b { display: block; color: #fff; font-size: 1.1rem; font-family: "Reem Kufi", sans-serif; }
 .reviews-lead__meta span { color: #cbb89b; font-size: .9rem; }
 .reviews-lead__cta { display: flex; flex-direction: column; gap: .6rem; }
@@ -598,6 +599,40 @@ html[data-theme="dark"] .contact__map iframe { filter: grayscale(.35) invert(.9)
 .to-top { position: fixed; inset-block-end: 1.4rem; inset-inline-end: 1.4rem; z-index: 40; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: #1c1305; border: none; cursor: pointer; box-shadow: 0 12px 26px -12px rgba(199,154,59,.8); opacity: 0; visibility: hidden; transform: translateY(12px); transition: .3s; }
 .to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .to-top svg { width: 22px; height: 22px; }
+
+/* ----------  WhatsApp order (FAB + mobile bar)  ---------- */
+.wa-fab {
+  position: fixed; inset-block-end: 1.4rem; inset-inline-start: 1.4rem; z-index: 45;
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: #25D366; color: #fff; box-shadow: 0 14px 28px -8px rgba(37,211,102,.7);
+  transition: transform .25s;
+}
+.wa-fab:hover { transform: translateY(-3px) scale(1.05); }
+.wa-fab svg { width: 30px; height: 30px; }
+.wa-fab::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 0 rgba(37,211,102,.5); animation: wapulse 2.6s infinite; }
+@keyframes wapulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,.5); } 70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+@media (prefers-reduced-motion: reduce) { .wa-fab::after { animation: none; } }
+
+.order-bar { display: none; }
+@media (max-width: 700px) {
+  .order-bar {
+    display: flex; position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 48; gap: .6rem;
+    padding: .55rem .8rem calc(.55rem + env(safe-area-inset-bottom));
+    background: color-mix(in oklab, var(--bg) 86%, transparent);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line); box-shadow: 0 -8px 24px -16px rgba(0,0,0,.5);
+  }
+  .order-bar__btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .85rem; border-radius: 14px; font-family: "Reem Kufi", sans-serif; font-weight: 700; font-size: 1.02rem;
+  }
+  .order-bar__btn svg { width: 20px; height: 20px; }
+  .order-bar__btn.call { background: var(--gold); color: #1c1305; }
+  .order-bar__btn.wa { background: #25D366; color: #fff; }
+  .wa-fab { display: none; }
+  .to-top { inset-block-end: 5.2rem; }
+  body { padding-block-end: 4.6rem; }
+}
 
 /* ----------  Responsive  ---------- */
 @media (max-width: 980px) {

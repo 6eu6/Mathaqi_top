@@ -25,10 +25,485 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=5" />
   <script>
     /* set theme before paint to avoid flash */
     (function(){try{var s=localStorage.getItem('mt-theme');var d=window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+  <!-- SEO: structured data (schema.org Restaurant) -->
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Restaurant",
+ "name": "مذاقي توب",
+ "alternateName": "Mathaqi Top",
+ "description": "مطعم وكافيه مذاقي توب في الحديدة — شاورما ع الفحم، برجر، بيتزا، بروست، زنجر وفاهيتا مع خدمة توصيل.",
+ "url": "https://6eu6.github.io/Mathaqi_top/",
+ "image": "https://6eu6.github.io/Mathaqi_top/assets/img/social-preview.jpg",
+ "logo": "https://6eu6.github.io/Mathaqi_top/assets/img/icon-512.png",
+ "servesCuisine": [
+  "شاورما",
+  "برجر",
+  "بيتزا",
+  "بروست",
+  "مأكولات سريعة"
+ ],
+ "priceRange": "$$",
+ "telephone": "+967738696360",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "شارع صنعاء، أمام كلية الشفاء",
+  "addressLocality": "الحديدة",
+  "addressCountry": "YE"
+ },
+ "geo": {
+  "@type": "GeoCoordinates",
+  "latitude": 14.79169,
+  "longitude": 42.96269
+ },
+ "hasMap": "https://maps.app.goo.gl/gJ9Fp4Zu8NTLTEW49",
+ "sameAs": [
+  "https://www.instagram.com/mathaqitop"
+ ],
+ "openingHoursSpecification": [
+  {
+   "@type": "OpeningHoursSpecification",
+   "dayOfWeek": [
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
+   ],
+   "opens": "16:00",
+   "closes": "00:00"
+  }
+ ],
+ "aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "3.9",
+  "reviewCount": "36",
+  "bestRating": "5",
+  "worstRating": "1"
+ },
+ "acceptsReservations": "False",
+ "hasMenu": {
+  "@type": "Menu",
+  "name": "منيو مذاقي توب",
+  "hasMenuSection": [
+   {
+    "@type": "MenuSection",
+    "name": "شاورما ع الفحم",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "شاورما عربي",
+      "offers": {
+       "@type": "Offer",
+       "price": "500",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "عربي بالجبن",
+      "offers": {
+       "@type": "Offer",
+       "price": "700",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "شاورما عربي سادة",
+      "offers": {
+       "@type": "Offer",
+       "price": "800",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "ساندوتش شاورما",
+      "offers": {
+       "@type": "Offer",
+       "price": "800",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل شاورما",
+      "offers": {
+       "@type": "Offer",
+       "price": "2000",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل شاورما عائلي",
+      "offers": {
+       "@type": "Offer",
+       "price": "3500",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "برجر",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "برجر فلافل",
+      "offers": {
+       "@type": "Offer",
+       "price": "300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "برجر تشيز - أجبان",
+      "offers": {
+       "@type": "Offer",
+       "price": "400",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "تشكن برجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "750",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "برجر لحم",
+      "offers": {
+       "@type": "Offer",
+       "price": "750",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "برجر سبايسي لحم",
+      "offers": {
+       "@type": "Offer",
+       "price": "1000",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "بيتزا",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "أجبان سادة",
+      "offers": {
+       "@type": "Offer",
+       "price": "2000",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "أجبان + خضار",
+      "offers": {
+       "@type": "Offer",
+       "price": "2000",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "أجبان + دجاج",
+      "offers": {
+       "@type": "Offer",
+       "price": "2500",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "بيتزا مذاقي",
+      "offers": {
+       "@type": "Offer",
+       "price": "3000",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "البروست",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "قطعتين بروست",
+      "offers": {
+       "@type": "Offer",
+       "price": "1250",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "أربع قطع بروست",
+      "offers": {
+       "@type": "Offer",
+       "price": "2500",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "ثمان قطع بروست",
+      "offers": {
+       "@type": "Offer",
+       "price": "5000",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "زنجر",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "زنجر عربي",
+      "offers": {
+       "@type": "Offer",
+       "price": "700",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "برجر زنجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "850",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "صاروخ زنجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "1300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "ساندوتش زنجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "1300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل زنجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "2500",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل عائلي زنجر",
+      "offers": {
+       "@type": "Offer",
+       "price": "4000",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "فاهيتا",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "فاهيتا عربي",
+      "offers": {
+       "@type": "Offer",
+       "price": "700",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "برجر فاهيتا",
+      "offers": {
+       "@type": "Offer",
+       "price": "850",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "صاروخ فاهيتا",
+      "offers": {
+       "@type": "Offer",
+       "price": "1300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "ساندوتش فاهيتا",
+      "offers": {
+       "@type": "Offer",
+       "price": "1300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل فاهيتا",
+      "offers": {
+       "@type": "Offer",
+       "price": "2500",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "سبيشل فاهيتا عائلي",
+      "offers": {
+       "@type": "Offer",
+       "price": "4000",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "فلافل",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "فلافل شامي",
+      "offers": {
+       "@type": "Offer",
+       "price": "200",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "فلافل شامي جبن",
+      "offers": {
+       "@type": "Offer",
+       "price": "250",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "فلافل عربي",
+      "offers": {
+       "@type": "Offer",
+       "price": "300",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "نفر فلافل",
+      "offers": {
+       "@type": "Offer",
+       "price": "800",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   },
+   {
+    "@type": "MenuSection",
+    "name": "مشروبات",
+    "hasMenuItem": [
+     {
+      "@type": "MenuItem",
+      "name": "عصير ليمون",
+      "offers": {
+       "@type": "Offer",
+       "price": "150",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "عصير فراولة",
+      "offers": {
+       "@type": "Offer",
+       "price": "250",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "عصير مانجو",
+      "offers": {
+       "@type": "Offer",
+       "price": "250",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "كابتشينو بارد",
+      "offers": {
+       "@type": "Offer",
+       "price": "250",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "مشروبات غازية",
+      "offers": {
+       "@type": "Offer",
+       "price": "200",
+       "priceCurrency": "YER"
+      }
+     },
+     {
+      "@type": "MenuItem",
+      "name": "مياه معدنية",
+      "offers": {
+       "@type": "Offer",
+       "price": "100",
+       "priceCurrency": "YER"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}
   </script>
 </head>
 <body>
@@ -510,11 +985,12 @@
 
     <div class="reviews-lead reveal">
       <div class="reviews-lead__score">
+        <span class="reviews-lead__num">3.9</span>
         <div>
-          <div class="reviews-lead__stars" style="margin-bottom:.5rem">
-            <svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg>
+          <div class="reviews-lead__stars" style="margin-bottom:.4rem">
+            <svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg><use href="#ic-star"/></svg><svg class="dim"><use href="#ic-star"/></svg>
           </div>
-          <div class="reviews-lead__meta"><b>تجربتك تهمّنا</b><span class="g-badge"><svg><use href="#ic-google"/></svg> قيّمنا واقرأ التقييمات على خرائط جوجل</span></div>
+          <div class="reviews-lead__meta"><b>من ٣٦ تقييم</b><span class="g-badge"><svg><use href="#ic-google"/></svg> على خرائط جوجل</span></div>
         </div>
       </div>
       <div class="reviews-lead__cta">
@@ -587,6 +1063,7 @@
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem">
           <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اتصل الآن</a>
+          <a class="btn" href="https://wa.me/967738696360?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%85%D8%B0%D8%A7%D9%82%D9%8A%20%D8%AA%D9%88%D8%A8" target="_blank" rel="noopener" style="background:#25D366;color:#fff;box-shadow:0 10px 24px -12px rgba(37,211,102,.8)"><svg><use href="#ic-whatsapp"/></svg> واتساب</a>
           <a class="btn btn--ghost" href="https://maps.app.goo.gl/gJ9Fp4Zu8NTLTEW49" target="_blank" rel="noopener"><svg><use href="#ic-pin"/></svg> الاتجاهات على جوجل</a>
         </div>
       </div>
@@ -654,9 +1131,18 @@
   </div>
 </footer>
 
+<!-- WhatsApp order: floating button (desktop) + sticky bar (mobile) -->
+<a class="wa-fab" href="https://wa.me/967738696360?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%85%D8%B0%D8%A7%D9%82%D9%8A%20%D8%AA%D9%88%D8%A8" target="_blank" rel="noopener" aria-label="اطلب عبر واتساب">
+  <svg><use href="#ic-whatsapp"/></svg>
+</a>
+<nav class="order-bar" aria-label="الطلب السريع">
+  <a class="order-bar__btn call" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اتصل</a>
+  <a class="order-bar__btn wa" href="https://wa.me/967738696360?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%85%D8%B0%D8%A7%D9%82%D9%8A%20%D8%AA%D9%88%D8%A8" target="_blank" rel="noopener"><svg><use href="#ic-whatsapp"/></svg> واتساب</a>
+</nav>
+
 <button class="to-top" aria-label="العودة للأعلى"><svg><use href="#ic-arrow-up"/></svg></button>
 
-<script src="assets/js/reviews.js?v=4" defer></script>
-<script src="assets/js/main.js?v=4" defer></script>
+<script src="assets/js/reviews.js?v=5" defer></script>
+<script src="assets/js/main.js?v=5" defer></script>
 </body>
 </html>
