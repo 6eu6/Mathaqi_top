@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>لوحة تحكم مذاقي توب</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="theme-color" content="#faf5ea" />
+<link rel="icon" href="../assets/img/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="../assets/img/icon-180.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
+<script>
+  (function(){try{var s=localStorage.getItem('mt-theme');var d=window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();
+</script>
+<style>
+:root{
+  --gold:#c79a3b; --gold-soft:#e2c165; --gold-deep:#a87c29; --ember:#c15b34; --ok:#2f9e63; --danger:#c0442e;
+  --bg:#faf5ea; --bg-2:#f2e8d6; --panel:#fff; --panel-2:#fbf6ec; --line:#e7dcc6;
+  --ink:#241c14; --ink-soft:#6c5e4c; --ink-faint:#9c8d78;
+  --shadow:0 18px 50px -24px rgba(60,42,16,.40); --shadow-sm:0 8px 26px -18px rgba(60,42,16,.45);
+}
+html[data-theme="dark"]{
+  --bg:#15110c; --bg-2:#1b1610; --panel:#201a13; --panel-2:#251e16; --line:#3a3024;
+  --ink:#f1e9da; --ink-soft:#c4b69f; --ink-faint:#8c7f6a;
+  --shadow:0 24px 60px -28px rgba(0,0,0,.8); --shadow-sm:0 12px 34px -22px rgba(0,0,0,.85);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;min-height:100svh}
+a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+h1,h2,h3{font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif;font-weight:600;line-height:1.35}
+.wrap{width:min(1100px,94vw);margin-inline:auto}
+
+/* ---------- login ---------- */
+#login{min-height:100svh;display:grid;place-items:center;padding:1.5rem}
+.login-card{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:24px;
+  box-shadow:var(--shadow);padding:2.2rem 1.8rem;text-align:center}
+.login-card__logo{width:76px;height:76px;border-radius:50%;margin:0 auto 1.1rem;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle at 50% 35%,var(--panel),var(--panel-2));border:1px solid var(--line);
+  box-shadow:inset 0 0 0 3px color-mix(in oklab,var(--gold) 20%,transparent)}
+.login-card__logo img{width:64px;height:64px;object-fit:contain}
+.login-card h1{font-size:1.35rem;margin-bottom:.2rem}
+.login-card p{color:var(--ink-faint);font-size:.86rem;margin-bottom:1.5rem}
+
+/* ---------- shell ---------- */
+#app{display:none}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in oklab,var(--bg) 88%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.topbar__in{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.7rem 0}
+.topbar__brand{display:flex;align-items:center;gap:.6rem;min-width:0}
+.topbar__brand img{width:38px;height:38px;border-radius:50%;object-fit:contain;border:1px solid var(--line);background:var(--panel);flex:none}
+.topbar__brand b{font-family:"Reem Kufi",sans-serif;font-size:1rem;white-space:nowrap}
+.topbar__brand span{display:block;font-size:.7rem;color:var(--ink-faint)}
+.topbar__actions{display:flex;align-items:center;gap:.45rem;flex:none}
+
+.tabs{display:flex;gap:.45rem;overflow-x:auto;padding:.7rem .2rem;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:.5rem 1rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);
+  color:var(--ink-soft);font-weight:700;font-size:.9rem;cursor:pointer;white-space:nowrap;transition:.2s}
+.tab.active{background:var(--gold);border-color:var(--gold);color:#1c1305}
+
+main{padding:.4rem 0 5rem}
+.panel{display:none} .panel.active{display:block}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:1.2rem 0 .9rem}
+.sec-head h2{font-size:1.15rem}
+.hint{color:var(--ink-faint);font-size:.82rem}
+
+/* ---------- cards / rows ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);
+  padding:1rem 1.1rem;margin-bottom:.8rem}
+.card--muted{background:var(--panel-2)}
+.row{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.row--between{justify-content:space-between}
+.grow{flex:1;min-width:180px}
+.thumb{width:56px;height:56px;border-radius:12px;object-fit:cover;border:1px solid var(--line);background:var(--panel-2);flex:none}
+.cat-title{font-family:"Reem Kufi",sans-serif;font-weight:700;font-size:1.05rem}
+.chip-count{font-size:.75rem;color:var(--ink-faint);background:var(--panel-2);border:1px solid var(--line);
+  padding:.1rem .55rem;border-radius:999px}
+
+/* ---------- controls ---------- */
+label{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:600;margin-bottom:.28rem}
+input[type=text],input[type=email],input[type=password],input[type=number],textarea,select{
+  width:100%;padding:.65rem .8rem;border-radius:12px;border:1px solid var(--line);background:var(--panel);
+  color:var(--ink);font-family:inherit;font-size:.95rem;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold)}
+textarea{resize:vertical;min-height:76px}
+.field{margin-bottom:.75rem}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem 1.15rem;border-radius:999px;
+  border:1px solid transparent;background:var(--gold);color:#1c1305;font-family:inherit;font-weight:700;font-size:.9rem;
+  cursor:pointer;transition:.2s;white-space:nowrap}
+.btn:hover{filter:brightness(1.05)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--gold)}
+.btn--danger{background:transparent;color:var(--danger);border-color:color-mix(in oklab,var(--danger) 40%,var(--line))}
+.btn--sm{padding:.4rem .8rem;font-size:.82rem}
+.btn--icon{padding:.42rem;width:34px;height:34px;border-radius:10px;background:transparent;border-color:var(--line);color:var(--ink-soft)}
+.btn--icon:hover{border-color:var(--gold);color:var(--ink)}
+.btn--block{width:100%}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+.switch{display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;font-size:.84rem;color:var(--ink-soft);font-weight:600}
+.switch input{appearance:none;width:40px;height:23px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none}
+.switch input::after{content:"";position:absolute;inset-block-start:3px;inset-inline-start:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:.2s}
+.switch input:checked{background:var(--ok)}
+.switch input:checked::after{transform:translateX(-17px)}
+
+/* ---------- feedback ---------- */
+.toast{position:fixed;inset-block-end:1.1rem;inset-inline:0;margin-inline:auto;width:max-content;max-width:92vw;z-index:90;
+  padding:.7rem 1.2rem;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.9rem;
+  box-shadow:var(--shadow);opacity:0;transform:translateY(12px);transition:.28s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.toast.err{background:var(--danger);color:#fff}
+.msg{padding:.6rem .9rem;border-radius:12px;font-size:.86rem;margin-bottom:.9rem;display:none}
+.msg.err{display:block;background:color-mix(in oklab,var(--danger) 12%,transparent);color:var(--danger);
+  border:1px solid color-mix(in oklab,var(--danger) 32%,transparent)}
+.empty{text-align:center;color:var(--ink-faint);padding:2rem 1rem;font-size:.9rem}
+.loading{text-align:center;color:var(--ink-faint);padding:3rem 1rem}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:1.2rem;
+  background:color-mix(in oklab,#000 55%,transparent);backdrop-filter:blur(3px)}
+.modal.open{display:grid}
+.modal__box{width:min(560px,100%);max-height:88svh;overflow-y:auto;background:var(--panel);border:1px solid var(--line);
+  border-radius:22px;box-shadow:var(--shadow);padding:1.4rem}
+.modal__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.modal__head h3{font-size:1.1rem}
+.modal__foot{display:flex;gap:.6rem;justify-content:flex-start;margin-top:1.2rem}
+
+.uploader{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.uploader img{width:78px;height:78px;border-radius:14px;object-fit:cover;border:1px solid var(--line);background:var(--panel-2)}
+.setup{max-width:640px;margin:3rem auto;padding:1.6rem;background:var(--panel);border:1px solid var(--line);
+  border-radius:20px;box-shadow:var(--shadow-sm)}
+.setup code{background:var(--panel-2);padding:.15rem .4rem;border-radius:6px;font-size:.85em;direction:ltr;display:inline-block}
+.setup ol{margin:.8rem 1.2rem 0;display:grid;gap:.5rem;font-size:.92rem}
+
+@media (max-width:540px){
+  .topbar__brand span{display:none}
+  .modal__box{padding:1.1rem;border-radius:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SETUP NOTICE (shown when config is empty) ============ -->
+<div id="setup" class="setup" style="display:none">
+  <h2 style="margin-bottom:.6rem">اللوحة جاهزة — تنقص خطوة الربط</h2>
+  <p class="hint">افتح الملف <code>assets/js/mt-config.js</code> وضع فيه رابط المشروع والمفتاح العام من Supabase:</p>
+  <ol>
+    <li>Supabase ← <b>SQL Editor</b> ← الصق ملف <code>supabase/setup.sql</code> ← Run</li>
+    <li>Supabase ← <b>Authentication ← Users ← Add user</b> (فعّل Auto Confirm)</li>
+    <li>شغّل سطر ربط المدير الموجود في نهاية ملف الإعداد</li>
+    <li>Supabase ← <b>Project Settings ← API</b> ← انسخ <code>URL</code> و <code>anon public</code> إلى <code>mt-config.js</code></li>
+  </ol>
+</div>
+
+<!-- ============ LOGIN ============ -->
+<section id="login" style="display:none">
+  <form class="login-card" id="loginForm">
+    <span class="login-card__logo"><img src="../assets/img/logo.png" alt="" /></span>
+    <h1>لوحة تحكم مذاقي توب</h1>
+    <p>سجّل الدخول للتعديل على الموقع</p>
+    <div class="msg" id="loginMsg"></div>
+    <div class="field" style="text-align:right">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" autocomplete="username" required />
+    </div>
+    <div class="field" style="text-align:right">
+      <label for="password">كلمة المرور</label>
+      <input type="password" id="password" autocomplete="current-password" required />
+    </div>
+    <button class="btn btn--block" id="loginBtn" type="submit" style="margin-top:.5rem">دخول</button>
+  </form>
+</section>
+
+<!-- ============ APP ============ -->
+<div id="app">
+  <header class="topbar">
+    <div class="wrap topbar__in">
+      <div class="topbar__brand">
+        <img src="../assets/img/logo.png" alt="" />
+        <div><b>لوحة التحكم</b><span id="whoami"></span></div>
+      </div>
+      <div class="topbar__actions">
+        <a class="btn btn--icon" href="../" target="_blank" rel="noopener" title="عرض الموقع" aria-label="عرض الموقع">
+          <svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg></a>
+        <button class="btn btn--icon" id="themeBtn" title="الوضع الليلي" aria-label="الوضع الليلي">
+          <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg></button>
+        <button class="btn btn--ghost btn--sm" id="logoutBtn">خروج</button>
+      </div>
+    </div>
+    <div class="wrap">
+      <nav class="tabs" id="tabs">
+        <button class="tab active" data-tab="menu">المنيو</button>
+        <button class="tab" data-tab="offers">العروض</button>
+        <button class="tab" data-tab="dishes">الأطباق</button>
+        <button class="tab" data-tab="settings">الإعدادات</button>
+        <button class="tab" data-tab="account">الحساب</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="boot" class="loading">جارٍ التحميل…</div>
+
+    <section class="panel" id="panel-menu">
+      <div class="sec-head">
+        <div><h2>المنيو</h2><p class="hint">التصنيفات والأصناف والأسعار</p></div>
+        <button class="btn btn--sm" data-add-cat>+ تصنيف جديد</button>
+      </div>
+      <div id="catList"></div>
+    </section>
+
+    <section class="panel" id="panel-offers">
+      <div class="sec-head">
+        <div><h2>العروض</h2><p class="hint">تظهر كسلايدات أفقية تحت قسم أطباقنا</p></div>
+        <button class="btn btn--sm" data-add-offer>+ عرض جديد</button>
+      </div>
+      <div id="offerList"></div>
+    </section>
+
+    <section class="panel" id="panel-dishes">
+      <div class="sec-head">
+        <div><h2>أطباقنا الأكثر طلباً</h2><p class="hint">الصور الدائرية في الصفحة الرئيسية</p></div>
+        <button class="btn btn--sm" data-add-dish>+ طبق جديد</button>
+      </div>
+      <div id="dishList"></div>
+    </section>
+
+    <section class="panel" id="panel-settings">
+      <div class="sec-head"><div><h2>الإعدادات</h2><p class="hint">أرقام التواصل والعنوان ونصوص الأقسام</p></div></div>
+      <div id="settingsForm"></div>
+    </section>
+
+    <section class="panel" id="panel-account">
+      <div class="sec-head"><div><h2>الحساب</h2><p class="hint">تغيير كلمة المرور</p></div></div>
+      <div class="card" style="max-width:460px">
+        <div class="msg" id="pwMsg"></div>
+        <div class="field"><label for="pw1">كلمة مرور جديدة</label><input type="password" id="pw1" autocomplete="new-password" /></div>
+        <div class="field"><label for="pw2">تأكيد كلمة المرور</label><input type="password" id="pw2" autocomplete="new-password" /></div>
+        <button class="btn" id="pwBtn">حفظ كلمة المرور</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal" id="modal">
+  <div class="modal__box">
+    <div class="modal__head">
+      <h3 id="modalTitle"></h3>
+      <button class="btn btn--icon" data-close aria-label="إغلاق">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div id="modalBody"></div>
+    <div class="modal__foot">
+      <button class="btn" id="modalSave">حفظ</button>
+      <button class="btn btn--ghost" data-close>إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../assets/js/mt-config.js?v=13"></script>
+<script>
+(function () {
+  "use strict";
+
+  var cfg = window.MT_CONFIG || {};
+  if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) {
+    document.getElementById("setup").style.display = "block";
+    return;
+  }
+
+  var URL_BASE = cfg.SUPABASE_URL.replace(/\/+$/, "");
+  var ANON = cfg.SUPABASE_ANON_KEY;
+  var BUCKET = "mathaqi-media";
+  var LS_KEY = "mt-panel-session";
+
+  /* =============== tiny Supabase client (auth + REST + storage) =============== */
+  var session = null;
+  try { session = JSON.parse(localStorage.getItem(LS_KEY) || "null"); } catch (e) {}
+
+  function saveSession(s) {
+    session = s;
+    try { s ? localStorage.setItem(LS_KEY, JSON.stringify(s)) : localStorage.removeItem(LS_KEY); } catch (e) {}
+  }
+
+  function authHeaders(extra) {
+    var h = { apikey: ANON, Authorization: "Bearer " + (session ? session.access_token : ANON) };
+    for (var k in (extra || {})) h[k] = extra[k];
+    return h;
+  }
+
+  function signIn(email, password) {
+    return fetch(URL_BASE + "/auth/v1/token?grant_type=password", {
+      method: "POST",
+      headers: { apikey: ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, password: password })
+    }).then(readJSON).then(function (d) { saveSession(d); return d; });
+  }
+
+  function refresh() {
+    if (!session || !session.refresh_token) return Promise.reject(new Error("no session"));
+    return fetch(URL_BASE + "/auth/v1/token?grant_type=refresh_token", {
+      method: "POST",
+      headers: { apikey: ANON, "Content-Type": "application/json" },
+      body: JSON.stringify({ refresh_token: session.refresh_token })
+    }).then(readJSON).then(function (d) { saveSession(d); return d; });
+  }
+
+  function updatePassword(pw) {
+    return fetch(URL_BASE + "/auth/v1/user", {
+      method: "PUT", headers: authHeaders({ "Content-Type": "application/json" }),
+      body: JSON.stringify({ password: pw })
+    }).then(readJSON);
+  }
+
+  function readJSON(r) {
+    return r.text().then(function (t) {
+      var d = null;
+      try { d = t ? JSON.parse(t) : null; } catch (e) {}
+      if (!r.ok) {
+        var m = (d && (d.msg || d.message || d.error_description || d.error || d.hint)) || ("خطأ " + r.status);
+        throw new Error(m);
+      }
+      return d;
+    });
+  }
+
+  /* REST with one automatic token refresh on 401 */
+  function rest(path, opts, retried) {
+    opts = opts || {};
+    var init = {
+      method: opts.method || "GET",
+      headers: authHeaders(opts.headers || (opts.body ? { "Content-Type": "application/json", Prefer: "return=representation" } : {}))
+    };
+    if (opts.body) init.body = JSON.stringify(opts.body);
+    return fetch(URL_BASE + "/rest/v1/" + path, init).then(function (r) {
+      if (r.status === 401 && !retried && session) {
+        return refresh().then(function () { return rest(path, opts, true); },
+                              function () { logout(); throw new Error("انتهت الجلسة، سجّل الدخول من جديد"); });
+      }
+      return readJSON(r);
+    });
+  }
+
+  function upload(file) {
+    var ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    var name = Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
+    return fetch(URL_BASE + "/storage/v1/object/" + BUCKET + "/" + name, {
+      method: "POST",
+      headers: authHeaders({ "x-upsert": "true", "Content-Type": file.type || "application/octet-stream" }),
+      body: file
+    }).then(function (r) {
+      if (!r.ok) return readJSON(r);
+      return { url: URL_BASE + "/storage/v1/object/public/" + BUCKET + "/" + name };
+    }).then(function (d) { return d.url; });
+  }
+
+  /* =============== UI helpers =============== */
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var toastEl = $("#toast"), toastTimer = null;
+  function toast(msg, isErr) {
+    toastEl.textContent = msg;
+    toastEl.className = "toast show" + (isErr ? " err" : "");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.className = "toast"; }, 2800);
+  }
+  function fail(e) { toast(e && e.message ? e.message : "حدث خطأ", true); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function money(v) {
+    if (v == null || v === "") return "";
+    var n = Number(v); return isFinite(n) ? String(parseFloat(n.toFixed(2))) : String(v);
+  }
+  function num(v) { v = String(v == null ? "" : v).trim(); return v === "" ? null : Number(v); }
+  function imgSrc(u) { return !u ? "" : (/^https?:\/\//i.test(u) ? u : "../" + String(u).replace(/^\/+/, "")); }
+
+  var ICONS = [
+    ["ic-shawarma","شاورما"],["ic-burger","برجر"],["ic-pizza","بيتزا"],["ic-broast","بروست"],
+    ["ic-zinger","زنجر"],["ic-fajita","فاهيتا"],["ic-falafel","فلافل"],["ic-drink","مشروبات"],
+    ["ic-utensils","عام"],["ic-flame","لهب"],["ic-leaf","ورقة"],["ic-tag","وسم"]
+  ];
+
+  /* =============== modal =============== */
+  var modal = $("#modal"), modalSave = $("#modalSave");
+  var onSave = null;
+  function openModal(title, bodyHTML, saveFn) {
+    $("#modalTitle").textContent = title;
+    $("#modalBody").innerHTML = bodyHTML;
+    onSave = saveFn;
+    modal.classList.add("open");
+  }
+  function closeModal() { modal.classList.remove("open"); onSave = null; }
+  document.querySelectorAll("[data-close]").forEach(function (b) { b.addEventListener("click", closeModal); });
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && modal.classList.contains("open")) closeModal(); });
+  modalSave.addEventListener("click", function () {
+    if (!onSave) return;
+    modalSave.disabled = true;
+    Promise.resolve(onSave()).then(function () { closeModal(); }).catch(fail)
+      .then(function () { modalSave.disabled = false; });
+  });
+
+  function field(label, id, value, type) {
+    return '<div class="field"><label for="' + id + '">' + label + "</label>" +
+      '<input type="' + (type || "text") + '" id="' + id + '" value="' + esc(value == null ? "" : value) + '" /></div>';
+  }
+  function area(label, id, value) {
+    return '<div class="field"><label for="' + id + '">' + label + "</label>" +
+      '<textarea id="' + id + '">' + esc(value == null ? "" : value) + "</textarea></div>";
+  }
+  function uploader(id, value) {
+    return '<div class="field"><label>الصورة</label><div class="uploader">' +
+      '<img id="' + id + '_prev" src="' + esc(imgSrc(value)) + '" alt="" />' +
+      '<input type="hidden" id="' + id + '" value="' + esc(value == null ? "" : value) + '" />' +
+      '<div><input type="file" id="' + id + '_file" accept="image/*" style="max-width:210px" />' +
+      '<div class="hint" id="' + id + '_st">اختر صورة من جهازك</div></div></div></div>';
+  }
+  function wireUploader(id) {
+    var f = $("#" + id + "_file"); if (!f) return;
+    f.addEventListener("change", function () {
+      var file = f.files && f.files[0]; if (!file) return;
+      $("#" + id + "_st").textContent = "جارٍ الرفع…";
+      upload(file).then(function (url) {
+        $("#" + id).value = url;
+        $("#" + id + "_prev").src = url;
+        $("#" + id + "_st").textContent = "تم الرفع ✓";
+      }).catch(function (e) { $("#" + id + "_st").textContent = "فشل الرفع: " + e.message; });
+    });
+  }
+  function val(id) { var el = $("#" + id); return el ? el.value.trim() : ""; }
+  function checked(id) { var el = $("#" + id); return !!(el && el.checked); }
+
+  /* =============== data =============== */
+  var DB = { cats: [], items: [], offers: [], dishes: [], settings: {} };
+
+  function loadAll() {
+    return Promise.all([
+      rest("mathaqi_categories?select=*&order=sort.asc"),
+      rest("mathaqi_items?select=*&order=sort.asc"),
+      rest("mathaqi_offers?select=*&order=sort.asc"),
+      rest("mathaqi_dishes?select=*&order=sort.asc"),
+      rest("mathaqi_settings?select=key,value")
+    ]).then(function (r) {
+      DB.cats = r[0]; DB.items = r[1]; DB.offers = r[2]; DB.dishes = r[3];
+      DB.settings = {}; r[4].forEach(function (row) { DB.settings[row.key] = row.value || {}; });
+      renderAll();
+    });
+  }
+
+  function renderAll() { renderMenu(); renderOffers(); renderDishes(); renderSettings(); }
+
+  /* ---- reorder helper: swap sort values with the neighbour ---- */
+  function move(table, list, id, dir) {
+    var i = list.findIndex(function (x) { return x.id === id; });
+    var j = i + dir;
+    if (i < 0 || j < 0 || j >= list.length) return;
+    var a = list[i], b = list[j];
+    var sa = a.sort, sb = b.sort;
+    if (sa === sb) { sa = i; sb = j; }
+    return Promise.all([
+      rest(table + "?id=eq." + a.id, { method: "PATCH", body: { sort: sb } }),
+      rest(table + "?id=eq." + b.id, { method: "PATCH", body: { sort: sa } })
+    ]).then(loadAll).then(function () { toast("تم الترتيب"); }).catch(fail);
+  }
+
+  function toggleVisible(table, id, visible) {
+    return rest(table + "?id=eq." + id, { method: "PATCH", body: { visible: visible } })
+      .then(loadAll).then(function () { toast(visible ? "ظاهر الآن" : "مخفي الآن"); }).catch(fail);
+  }
+
+  function remove(table, id, what) {
+    if (!confirm("تأكيد حذف " + what + "؟ لا يمكن التراجع.")) return;
+    rest(table + "?id=eq." + id, { method: "DELETE" }).then(loadAll)
+      .then(function () { toast("تم الحذف"); }).catch(fail);
+  }
+
+  function nextSort(list) { return list.reduce(function (m, x) { return Math.max(m, x.sort || 0); }, 0) + 1; }
+
+  var arrows = function (t, id) {
+    return '<button class="btn btn--icon" data-move="' + t + '" data-id="' + id + '" data-dir="-1" aria-label="أعلى">' +
+      '<svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>' +
+      '<button class="btn btn--icon" data-move="' + t + '" data-id="' + id + '" data-dir="1" aria-label="أسفل">' +
+      '<svg viewBox="0 0 24 24"><path d="M12 5v14M18 13l-6 6-6-6"/></svg></button>';
+  };
+  var visSwitch = function (t, id, v) {
+    return '<label class="switch"><input type="checkbox" data-vis="' + t + '" data-id="' + id + '"' +
+      (v ? " checked" : "") + " /> ظاهر</label>";
+  };
+
+  /* ---------------- MENU ---------------- */
+  function renderMenu() {
+    var host = $("#catList");
+    if (!DB.cats.length) { host.innerHTML = '<div class="empty">لا توجد تصنيفات بعد.</div>'; return; }
+    host.innerHTML = DB.cats.map(function (c) {
+      var items = DB.items.filter(function (i) { return i.category_id === c.id; });
+      return '<div class="card">' +
+        '<div class="row row--between" style="margin-bottom:.6rem">' +
+          '<div class="row"><span class="cat-title">' + esc(c.name_ar) + "</span>" +
+            '<span class="chip-count">' + items.length + " صنف</span></div>" +
+          '<div class="row">' + visSwitch("mathaqi_categories", c.id, c.visible) + arrows("cat", c.id) +
+            '<button class="btn btn--icon" data-edit-cat="' + c.id + '" aria-label="تعديل">' +
+            '<svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M13.5 6.5l4 4"/></svg></button>' +
+            '<button class="btn btn--icon" data-del-cat="' + c.id + '" aria-label="حذف">' +
+            '<svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V5h6v2M7 7l1 13h8l1-13"/></svg></button>' +
+          "</div></div>" +
+        items.map(function (it) {
+          var price = c.two_prices
+            ? money(it.price) + " / " + money(it.price2)
+            : (it.price_note || money(it.price));
+          return '<div class="row row--between" style="border-top:1px dashed var(--line);padding:.45rem 0">' +
+            '<span class="grow">' + esc(it.name) + (it.visible ? "" : ' <span class="hint">(مخفي)</span>') + "</span>" +
+            '<b style="color:var(--gold-deep)">' + esc(price) + "</b>" +
+            '<span class="row">' + arrows("item", it.id) +
+              '<button class="btn btn--icon" data-edit-item="' + it.id + '" aria-label="تعديل">' +
+              '<svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M13.5 6.5l4 4"/></svg></button>' +
+              '<button class="btn btn--icon" data-del-item="' + it.id + '" aria-label="حذف">' +
+              '<svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V5h6v2M7 7l1 13h8l1-13"/></svg></button>' +
+            "</span></div>";
+        }).join("") +
+        '<button class="btn btn--ghost btn--sm" data-add-item="' + c.id + '" style="margin-top:.7rem">+ صنف</button>' +
+        "</div>";
+    }).join("");
+  }
+
+  function catForm(c) {
+    c = c || {};
+    return field("الاسم بالعربية", "c_ar", c.name_ar) +
+      field("الاسم بالإنجليزية", "c_en", c.name_en) +
+      '<div class="field"><label for="c_icon">الأيقونة</label><select id="c_icon">' +
+        ICONS.map(function (i) {
+          return '<option value="' + i[0] + '"' + (c.icon === i[0] ? " selected" : "") + ">" + i[1] + "</option>";
+        }).join("") + "</select></div>" +
+      field("المعرّف (إنجليزي بدون مسافات)", "c_slug", c.slug) +
+      '<label class="switch" style="margin:.4rem 0 .8rem"><input type="checkbox" id="c_two"' +
+        (c.two_prices ? " checked" : "") + " /> سعران (صغير / كبير)</label>" +
+      '<div class="fields">' + field("عنوان العمود ١", "c_c1", c.col1_label || "صغير") +
+        field("عنوان العمود ٢", "c_c2", c.col2_label || "كبير") + "</div>" +
+      area("ملاحظة أسفل التصنيف (اختياري)", "c_note", c.note);
+  }
+
+  function itemForm(it, cat) {
+    it = it || {};
+    var two = cat && cat.two_prices;
+    return field("اسم الصنف", "i_name", it.name) +
+      '<div class="fields">' +
+        field(two ? "سعر " + (cat.col1_label || "صغير") : "السعر", "i_p1", money(it.price), "number") +
+        (two ? field("سعر " + (cat.col2_label || "كبير"), "i_p2", money(it.price2), "number") : "") +
+      "</div>" +
+      field("نص بدل السعر (اختياري، مثل: يبدأ 1500)", "i_note", it.price_note);
+  }
+
+  /* ---------------- OFFERS ---------------- */
+  function renderOffers() {
+    var host = $("#offerList");
+    if (!DB.offers.length) { host.innerHTML = '<div class="empty">لا توجد عروض بعد.</div>'; return; }
+    host.innerHTML = DB.offers.map(function (o) {
+      var price = o.price_text ? o.price_text
+        : (o.new_price != null ? (o.old_price != null ? money(o.old_price) + " ← " : "") + money(o.new_price) : "—");
+      return '<div class="card"><div class="row row--between">' +
+        '<div class="row grow">' +
+          (o.image_url ? '<img class="thumb" src="' + esc(imgSrc(o.image_url)) + '" alt="" />' : '<span class="thumb"></span>') +
+          '<div class="grow"><b>' + esc(o.title) + "</b>" +
+            (o.badge ? ' <span class="chip-count">' + esc(o.badge) + "</span>" : "") +
+            '<div class="hint">' + esc(price) + (o.featured ? " · مميّز" : "") + "</div></div>" +
+        "</div>" +
+        '<div class="row">' + visSwitch("mathaqi_offers", o.id, o.visible) + arrows("offer", o.id) +
+          '<button class="btn btn--icon" data-edit-offer="' + o.id + '" aria-label="تعديل">' +
+          '<svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M13.5 6.5l4 4"/></svg></button>' +
+          '<button class="btn btn--icon" data-del-offer="' + o.id + '" aria-label="حذف">' +
+          '<svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V5h6v2M7 7l1 13h8l1-13"/></svg></button>' +
+        "</div></div></div>";
+    }).join("");
+  }
+
+  function offerForm(o) {
+    o = o || {};
+    var fits = [["contain","صورة مفرّغة"],["cover","صورة تملأ الإطار"],["round","صورة دائرية"],["none","بدون صورة"]];
+    return field("عنوان العرض", "o_title", o.title) +
+      area("وصف مختصر", "o_sub", o.subtitle) +
+      '<div class="fields">' + field("الشارة (مثل: عرض الخميس والجمعة)", "o_badge", o.badge) +
+        field("نص بدل السعر (اختياري)", "o_ptext", o.price_text) + "</div>" +
+      '<div class="fields">' + field("السعر قبل", "o_old", money(o.old_price), "number") +
+        field("السعر بعد", "o_new", money(o.new_price), "number") + "</div>" +
+      '<div class="fields">' +
+        '<div class="field"><label for="o_fit">نوع الصورة</label><select id="o_fit">' +
+          fits.map(function (f) { return '<option value="' + f[0] + '"' + (o.image_fit === f[0] ? " selected" : "") + ">" + f[1] + "</option>"; }).join("") +
+        "</select></div>" +
+        field("نص كبير بدل الصورة (مثل 20%)", "o_big", o.big_text) +
+      "</div>" +
+      uploader("o_img", o.image_url) +
+      '<label class="switch" style="margin-inline-end:1rem"><input type="checkbox" id="o_gold"' + (o.badge_gold ? " checked" : "") + " /> شارة ذهبية</label>" +
+      '<label class="switch"><input type="checkbox" id="o_feat"' + (o.featured ? " checked" : "") + " /> عرض مميّز (بطاقة داكنة)</label>";
+  }
+
+  /* ---------------- DISHES ---------------- */
+  function renderDishes() {
+    var host = $("#dishList");
+    if (!DB.dishes.length) { host.innerHTML = '<div class="empty">لا توجد أطباق بعد.</div>'; return; }
+    host.innerHTML = DB.dishes.map(function (d) {
+      return '<div class="card"><div class="row row--between">' +
+        '<div class="row grow">' +
+          (d.image_url ? '<img class="thumb" src="' + esc(imgSrc(d.image_url)) + '" alt="" />' : '<span class="thumb"></span>') +
+          '<div class="grow"><b>' + esc(d.name_ar) + '</b><div class="hint">' + esc(d.name_en || "") + "</div></div>" +
+        "</div>" +
+        '<div class="row">' + visSwitch("mathaqi_dishes", d.id, d.visible) + arrows("dish", d.id) +
+          '<button class="btn btn--icon" data-edit-dish="' + d.id + '" aria-label="تعديل">' +
+          '<svg viewBox="0 0 24 24"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M13.5 6.5l4 4"/></svg></button>' +
+          '<button class="btn btn--icon" data-del-dish="' + d.id + '" aria-label="حذف">' +
+          '<svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V5h6v2M7 7l1 13h8l1-13"/></svg></button>' +
+        "</div></div></div>";
+    }).join("");
+  }
+
+  function dishForm(d) {
+    d = d || {};
+    return field("الاسم بالعربية", "d_ar", d.name_ar) +
+      field("الاسم بالإنجليزية", "d_en", d.name_en) +
+      '<div class="field"><label for="d_fit">نوع الصورة</label><select id="d_fit">' +
+        '<option value="contain"' + (d.image_fit === "contain" ? " selected" : "") + ">صورة مفرّغة</option>" +
+        '<option value="cover"' + (d.image_fit === "cover" ? " selected" : "") + ">صورة تملأ الدائرة</option>" +
+      "</select></div>" +
+      uploader("d_img", d.image_url);
+  }
+
+  /* ---------------- SETTINGS ---------------- */
+  function renderSettings() {
+    var c = DB.settings.contact || {}, s = DB.settings.sections || {},
+        h = DB.settings.hero || {}, sig = DB.settings.signature || {};
+    $("#settingsForm").innerHTML =
+      '<div class="card"><h3 style="margin-bottom:.8rem">التواصل</h3><div class="fields">' +
+        field("رقم الطلب الأساسي", "st_p1", c.phone1) +
+        field("رقم إضافي", "st_p2", c.phone2) +
+        field("رقم الواتساب (مع 967)", "st_wa", c.whatsapp) +
+        field("ساعة الفتح (0-23)", "st_open", c.open_from == null ? 16 : c.open_from, "number") +
+      "</div>" +
+      area("العنوان", "st_addr", c.address) +
+      field("نص أوقات العمل", "st_hours", c.hours) +
+      '<div class="fields">' + field("رابط إنستقرام", "st_ig", c.instagram) +
+        field("رابط خرائط جوجل", "st_maps", c.maps) + "</div></div>" +
+
+      '<div class="card"><h3 style="margin-bottom:.8rem">الواجهة الرئيسية</h3>' +
+        field("السطر العلوي", "st_h_eyebrow", h.eyebrow) +
+        area("النص التعريفي", "st_h_sub", h.subtitle) + "</div>" +
+
+      '<div class="card"><h3 style="margin-bottom:.8rem">الطبق المميّز</h3>' +
+        field("العنوان", "st_sig_title", sig.title) +
+        area("الوصف", "st_sig_text", sig.text) +
+        field("يبدأ من (سعر)", "st_sig_price", sig.from_price, "number") + "</div>" +
+
+      '<div class="card"><h3 style="margin-bottom:.8rem">عناوين الأقسام</h3><div class="fields">' +
+        field("المنيو — عنوان", "st_menu_title", s.menu_title) +
+        field("المنيو — وصف", "st_menu_text", s.menu_text) +
+        field("الأطباق — عنوان", "st_dishes_title", s.dishes_title) +
+        field("الأطباق — وصف", "st_dishes_text", s.dishes_text) +
+        field("العروض — عنوان", "st_offers_title", s.offers_title) +
+      "</div></div>" +
+      '<button class="btn" id="saveSettings">حفظ الإعدادات</button>';
+
+    $("#saveSettings").addEventListener("click", function () {
+      var btn = this; btn.disabled = true;
+      var payload = [
+        { key: "contact", value: {
+            phone1: val("st_p1"), phone2: val("st_p2"), whatsapp: val("st_wa"),
+            address: val("st_addr"), hours: val("st_hours"),
+            open_from: num(val("st_open")), open_to: (DB.settings.contact || {}).open_to || 24,
+            instagram: val("st_ig"), maps: val("st_maps") } },
+        { key: "hero", value: Object.assign({}, h, { eyebrow: val("st_h_eyebrow"), subtitle: val("st_h_sub") }) },
+        { key: "signature", value: Object.assign({}, sig, {
+            title: val("st_sig_title"), text: val("st_sig_text"), from_price: num(val("st_sig_price")) }) },
+        { key: "sections", value: Object.assign({}, s, {
+            menu_title: val("st_menu_title"), menu_text: val("st_menu_text"),
+            dishes_title: val("st_dishes_title"), dishes_text: val("st_dishes_text"),
+            offers_title: val("st_offers_title") }) }
+      ];
+      rest("mathaqi_settings?on_conflict=key", {
+        method: "POST", body: payload,
+        headers: authHeaders({ "Content-Type": "application/json", Prefer: "resolution=merge-duplicates,return=representation" })
+      }).then(loadAll).then(function () { toast("تم الحفظ ✓"); })
+        .catch(fail).then(function () { btn.disabled = false; });
+    });
+  }
+
+  /* =============== events =============== */
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-move],[data-edit-cat],[data-del-cat],[data-add-item],[data-edit-item]," +
+      "[data-del-item],[data-add-cat],[data-add-offer],[data-edit-offer],[data-del-offer]," +
+      "[data-add-dish],[data-edit-dish],[data-del-dish]");
+    if (!t) return;
+    var id = t.getAttribute("data-id");
+
+    if (t.hasAttribute("data-move")) {
+      var kind = t.getAttribute("data-move"), dir = +t.getAttribute("data-dir");
+      if (kind === "cat")   return move("mathaqi_categories", DB.cats, id, dir);
+      if (kind === "offer") return move("mathaqi_offers", DB.offers, id, dir);
+      if (kind === "dish")  return move("mathaqi_dishes", DB.dishes, id, dir);
+      if (kind === "item") {
+        var it = DB.items.find(function (x) { return x.id === id; });
+        return move("mathaqi_items", DB.items.filter(function (x) { return x.category_id === it.category_id; }), id, dir);
+      }
+    }
+
+    /* ---- categories ---- */
+    if (t.hasAttribute("data-add-cat")) {
+      return openModal("تصنيف جديد", catForm(null), function () {
+        return rest("mathaqi_categories", { method: "POST", body: {
+          name_ar: val("c_ar"), name_en: val("c_en"), icon: val("c_icon"),
+          slug: val("c_slug") || ("cat-" + Date.now()), two_prices: checked("c_two"),
+          col1_label: val("c_c1"), col2_label: val("c_c2"), note: val("c_note") || null,
+          sort: nextSort(DB.cats) } }).then(loadAll).then(function () { toast("تم إضافة التصنيف"); });
+      });
+    }
+    if (t.hasAttribute("data-edit-cat")) {
+      var c = DB.cats.find(function (x) { return x.id === t.getAttribute("data-edit-cat"); });
+      return openModal("تعديل التصنيف", catForm(c), function () {
+        return rest("mathaqi_categories?id=eq." + c.id, { method: "PATCH", body: {
+          name_ar: val("c_ar"), name_en: val("c_en"), icon: val("c_icon"), slug: val("c_slug"),
+          two_prices: checked("c_two"), col1_label: val("c_c1"), col2_label: val("c_c2"),
+          note: val("c_note") || null } }).then(loadAll).then(function () { toast("تم الحفظ ✓"); });
+      });
+    }
+    if (t.hasAttribute("data-del-cat")) return remove("mathaqi_categories", t.getAttribute("data-del-cat"), "التصنيف وكل أصنافه");
+
+    /* ---- items ---- */
+    if (t.hasAttribute("data-add-item")) {
+      var cid = t.getAttribute("data-add-item");
+      var cat = DB.cats.find(function (x) { return x.id === cid; });
+      var sibs = DB.items.filter(function (x) { return x.category_id === cid; });
+      return openModal("صنف جديد — " + cat.name_ar, itemForm(null, cat), function () {
+        return rest("mathaqi_items", { method: "POST", body: {
+          category_id: cid, name: val("i_name"), price: num(val("i_p1")),
+          price2: cat.two_prices ? num(val("i_p2")) : null,
+          price_note: val("i_note") || null, sort: nextSort(sibs) } })
+          .then(loadAll).then(function () { toast("تم إضافة الصنف"); });
+      });
+    }
+    if (t.hasAttribute("data-edit-item")) {
+      var item = DB.items.find(function (x) { return x.id === t.getAttribute("data-edit-item"); });
+      var pcat = DB.cats.find(function (x) { return x.id === item.category_id; });
+      return openModal("تعديل الصنف", itemForm(item, pcat), function () {
+        return rest("mathaqi_items?id=eq." + item.id, { method: "PATCH", body: {
+          name: val("i_name"), price: num(val("i_p1")),
+          price2: pcat.two_prices ? num(val("i_p2")) : null,
+          price_note: val("i_note") || null } }).then(loadAll).then(function () { toast("تم الحفظ ✓"); });
+      });
+    }
+    if (t.hasAttribute("data-del-item")) return remove("mathaqi_items", t.getAttribute("data-del-item"), "الصنف");
+
+    /* ---- offers ---- */
+    if (t.hasAttribute("data-add-offer")) {
+      openModal("عرض جديد", offerForm(null), function () {
+        return rest("mathaqi_offers", { method: "POST", body: offerPayload(nextSort(DB.offers)) })
+          .then(loadAll).then(function () { toast("تم إضافة العرض"); });
+      });
+      return wireUploader("o_img");
+    }
+    if (t.hasAttribute("data-edit-offer")) {
+      var o = DB.offers.find(function (x) { return x.id === t.getAttribute("data-edit-offer"); });
+      openModal("تعديل العرض", offerForm(o), function () {
+        return rest("mathaqi_offers?id=eq." + o.id, { method: "PATCH", body: offerPayload() })
+          .then(loadAll).then(function () { toast("تم الحفظ ✓"); });
+      });
+      return wireUploader("o_img");
+    }
+    if (t.hasAttribute("data-del-offer")) return remove("mathaqi_offers", t.getAttribute("data-del-offer"), "العرض");
+
+    /* ---- dishes ---- */
+    if (t.hasAttribute("data-add-dish")) {
+      openModal("طبق جديد", dishForm(null), function () {
+        return rest("mathaqi_dishes", { method: "POST", body: {
+          name_ar: val("d_ar"), name_en: val("d_en"), image_url: val("d_img") || null,
+          image_fit: val("d_fit"), sort: nextSort(DB.dishes) } })
+          .then(loadAll).then(function () { toast("تم إضافة الطبق"); });
+      });
+      return wireUploader("d_img");
+    }
+    if (t.hasAttribute("data-edit-dish")) {
+      var d = DB.dishes.find(function (x) { return x.id === t.getAttribute("data-edit-dish"); });
+      openModal("تعديل الطبق", dishForm(d), function () {
+        return rest("mathaqi_dishes?id=eq." + d.id, { method: "PATCH", body: {
+          name_ar: val("d_ar"), name_en: val("d_en"), image_url: val("d_img") || null,
+          image_fit: val("d_fit") } }).then(loadAll).then(function () { toast("تم الحفظ ✓"); });
+      });
+      return wireUploader("d_img");
+    }
+    if (t.hasAttribute("data-del-dish")) return remove("mathaqi_dishes", t.getAttribute("data-del-dish"), "الطبق");
+  });
+
+  function offerPayload(sort) {
+    var b = {
+      title: val("o_title"), subtitle: val("o_sub") || null, badge: val("o_badge") || null,
+      badge_gold: checked("o_gold"), featured: checked("o_feat"),
+      old_price: num(val("o_old")), new_price: num(val("o_new")),
+      price_text: val("o_ptext") || null, image_url: val("o_img") || null,
+      image_fit: val("o_fit"), big_text: val("o_big") || null
+    };
+    if (sort != null) b.sort = sort;
+    return b;
+  }
+
+  document.addEventListener("change", function (e) {
+    var v = e.target.closest("[data-vis]");
+    if (v) toggleVisible(v.getAttribute("data-vis"), v.getAttribute("data-id"), v.checked);
+  });
+
+  /* tabs */
+  $("#tabs").addEventListener("click", function (e) {
+    var b = e.target.closest(".tab"); if (!b) return;
+    document.querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === b); });
+    document.querySelectorAll(".panel").forEach(function (p) {
+      p.classList.toggle("active", p.id === "panel-" + b.getAttribute("data-tab"));
+    });
+  });
+
+  /* theme */
+  $("#themeBtn").addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("mt-theme", next); } catch (e) {}
+  });
+
+  /* password */
+  $("#pwBtn").addEventListener("click", function () {
+    var a = $("#pw1").value, b = $("#pw2").value, msg = $("#pwMsg");
+    msg.className = "msg";
+    if (a.length < 8) { msg.className = "msg err"; msg.textContent = "كلمة المرور يجب أن تكون ٨ أحرف على الأقل."; return; }
+    if (a !== b) { msg.className = "msg err"; msg.textContent = "كلمتا المرور غير متطابقتين."; return; }
+    this.disabled = true;
+    var btn = this;
+    updatePassword(a).then(function () { $("#pw1").value = $("#pw2").value = ""; toast("تم تغيير كلمة المرور ✓"); })
+      .catch(function (e) { msg.className = "msg err"; msg.textContent = e.message; })
+      .then(function () { btn.disabled = false; });
+  });
+
+  /* login / logout */
+  function logout() { saveSession(null); location.reload(); }
+  $("#logoutBtn").addEventListener("click", logout);
+
+  $("#loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var btn = $("#loginBtn"), msg = $("#loginMsg");
+    msg.className = "msg"; btn.disabled = true; btn.textContent = "جارٍ الدخول…";
+    signIn($("#email").value.trim(), $("#password").value)
+      .then(start)
+      .catch(function (err) {
+        msg.className = "msg err";
+        msg.textContent = /invalid/i.test(err.message) ? "البريد أو كلمة المرور غير صحيحة." : err.message;
+      })
+      .then(function () { btn.disabled = false; btn.textContent = "دخول"; });
+  });
+
+  function showLogin() { $("#login").style.display = "grid"; $("#app").style.display = "none"; }
+
+  function start() {
+    $("#login").style.display = "none";
+    $("#app").style.display = "block";
+    $("#whoami").textContent = (session && session.user && session.user.email) || "";
+    $("#panel-menu").classList.add("active");
+    return rest("mathaqi_admins?select=user_id").then(function (rows) {
+      if (!rows || !rows.length) throw new Error("هذا الحساب غير مصرّح له بالتعديل. أضِفه إلى جدول المدراء.");
+      return loadAll();
+    }).then(function () { $("#boot").style.display = "none"; })
+      .catch(function (e) {
+        $("#boot").innerHTML = '<div class="msg err" style="display:block">' + esc(e.message) + "</div>";
+        fail(e);
+      });
+  }
+
+  /* boot */
+  if (session && session.access_token) {
+    refresh().then(start, showLogin);
+  } else {
+    showLogin();
+  }
+})();
+</script>
+</body>
+</html>

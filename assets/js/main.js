@@ -147,7 +147,7 @@
   }
 
   /* menu: chips drive the slides, and the slides drive the chips back */
-  (function () {
+  function initMenuSlider() {
     var strip = document.querySelector("[data-menu-tabs]");
     var menu = initSlider(document.getElementById("menuSlider"), function (i, slides) {
       if (!strip) return;
@@ -178,23 +178,31 @@
         centerChip(tab);
       });
     });
-  })();
+  }
 
-  /* offers */
-  initSlider(document.getElementById("offersSlider"));
+  /* Both sliders. Re-callable: the CMS loader re-renders the tracks from the
+     database and then asks for a fresh init on the new DOM. */
+  function initSliders() {
+    initMenuSlider();
+    initSlider(document.getElementById("offersSlider"));
+  }
+  initSliders();
 
   /* ---------- Scroll reveal ---------- */
-  var reveals = document.querySelectorAll(".reveal");
+  var io = null;
   if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    reveals.forEach(function (el, i) { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
   }
+  function observeReveals(root) {
+    var els = (root || document).querySelectorAll(".reveal:not(.in)");
+    if (!io) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+    els.forEach(function (el, i) { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
+  }
+  observeReveals(document);
 
   /* ---------- Active nav link (scroll spy) ---------- */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a[href^="#"]'));
@@ -309,13 +317,25 @@
   (function () {
     var el = document.querySelector("[data-open-badge]");
     if (!el) return;
+
+    /* "16" → "٤ عصراً" */
+    function hourLabel(h) {
+      if (h === 0) return "منتصف الليل";
+      var t = h > 12 ? h - 12 : h;
+      var period = h < 12 ? "صباحاً" : (h === 12 ? "ظهراً" : (h < 17 ? "عصراً" : "مساءً"));
+      var ar = String(t).replace(/\d/g, function (d) { return "٠١٢٣٤٥٦٧٨٩"[+d]; });
+      return ar + " " + period;
+    }
+
     function render() {
+      var root = document.documentElement;
+      var from = parseInt(root.getAttribute("data-open-from"), 10);
+      if (isNaN(from)) from = 16;                  // opening hour, overridable from the panel
       var now = new Date();
-      var h = (now.getUTCHours() + 3) % 24;      // Yemen has no DST
-      var m = now.getUTCMinutes();
-      var open = h >= 16;                          // open 16:00 until midnight
+      var h = (now.getUTCHours() + 3) % 24;        // Yemen has no DST
+      var open = h >= from;                        // open until midnight
       el.className = "open-badge " + (open ? "is-open" : "is-closed");
-      el.innerHTML = '<span class="dot"></span>' + (open ? "مفتوح الآن" : "مغلق — نفتح ٤ عصراً");
+      el.innerHTML = '<span class="dot"></span>' + (open ? "مفتوح الآن" : "مغلق — نفتح " + hourLabel(from));
       el.removeAttribute("hidden");
     }
     render();
@@ -325,4 +345,9 @@
   /* ---------- Year ---------- */
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
+
+  /* hooks for the CMS loader (assets/js/content.js) */
+  window.MT = window.MT || {};
+  window.MT.initSliders = initSliders;
+  window.MT.observeReveals = observeReveals;
 })();

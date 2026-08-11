@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=12" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=13" />
   <script>
     /* set theme before paint to avoid flash */
     (function(){try{var s=localStorage.getItem('mt-theme');var d=window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();
@@ -651,9 +651,9 @@
 <section class="hero" id="home">
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <div class="hero__eyebrow kicker">مطعم وكافيه · الحديدة</div>
+      <div class="hero__eyebrow kicker" data-hero-eyebrow>مطعم وكافيه · الحديدة</div>
       <h1 class="display">نكهةٌ تُطرِب المذاق<br/>من <span class="word">مذاقي توب</span></h1>
-      <p class="hero__sub">شاورما ع الفحم، برجر، بيتزا، بروست، زنجر وفاهيتا — تُحضَّر طازجة يومياً بأيدٍ ماهرة ونكهةٍ تُدمن.</p>
+      <p class="hero__sub" data-hero-sub>شاورما ع الفحم، برجر، بيتزا، بروست، زنجر وفاهيتا — تُحضَّر طازجة يومياً بأيدٍ ماهرة ونكهةٍ تُدمن.</p>
       <p class="hero__latin">Mathaqi Top — Restaurant &amp; Café</p>
 
       <div class="hero__cta">
@@ -697,10 +697,10 @@
     <div class="signature__card reveal">
       <div class="signature__body">
         <span class="kicker">الطبق المميّز</span>
-        <h2>شاورما ع الفحم</h2>
-        <p>لحمٌ متبّل يُشوى على الفحم ببطء ليكتسب نكهته الدخانية العميقة، يُلفّ طازجاً مع الخضار والصوص الخاص. سرّ مذاقنا الذي يعود له الزبائن دائماً.</p>
+        <h2 data-sig-title>شاورما ع الفحم</h2>
+        <p data-sig-text>لحمٌ متبّل يُشوى على الفحم ببطء ليكتسب نكهته الدخانية العميقة، يُلفّ طازجاً مع الخضار والصوص الخاص. سرّ مذاقنا الذي يعود له الزبائن دائماً.</p>
         <div class="signature__price">
-          <small>يبدأ من</small><b>500</b><small class="riyal" aria-label="ريال">&#x20C1;</small>
+          <small>يبدأ من</small><b data-sig-price>500</b><small class="riyal" aria-label="ريال">&#x20C1;</small>
         </div>
         <div style="margin-top:1.8rem">
           <a class="btn" href="#menu"><svg><use href="#ic-utensils"/></svg> شاهد كل الأصناف</a>
@@ -719,9 +719,9 @@
 <section class="section" id="menu" style="background:var(--bg-2)">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">قائمة الطعام</span>
-      <h2>منيو مذاقي توب</h2>
-      <p>اختر التصنيف أو اسحب أفقياً لتصفّح الأصناف.</p>
+      <span class="kicker" data-s-menu-kicker>قائمة الطعام</span>
+      <h2 data-s-menu-title>منيو مذاقي توب</h2>
+      <p data-s-menu-text>اختر التصنيف أو اسحب أفقياً لتصفّح الأصناف.</p>
       <div class="divider" style="margin-top:1rem"><svg viewBox="0 0 24 24"><use href="#ic-diamond"/></svg></div>
     </div>
 
@@ -857,9 +857,9 @@
 <section class="section" id="dishes">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">من مطبخنا</span>
-      <h2>أطباقنا الأكثر طلباً</h2>
-      <p>تشكيلة من أشهى أطباقنا، تُحضَّر بعناية ونكهةٍ تُطرب المذاق.</p>
+      <span class="kicker" data-s-dishes-kicker>من مطبخنا</span>
+      <h2 data-s-dishes-title>أطباقنا الأكثر طلباً</h2>
+      <p data-s-dishes-text>تشكيلة من أشهى أطباقنا، تُحضَّر بعناية ونكهةٍ تُطرب المذاق.</p>
     </div>
     <div class="dishes">
       <figure class="dish reveal">
@@ -907,8 +907,8 @@
 <section class="section" id="offers">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">وفّر أكثر</span>
-      <h2>عروض مذاقي توب</h2>
+      <span class="kicker" data-s-offers-kicker>وفّر أكثر</span>
+      <h2 data-s-offers-title>عروض مذاقي توب</h2>
       <p>عروض الخميس والجمعة وأكثر — اسحب لاستعراض كل العروض. الأسعار بالريال <span class="riyal" aria-label="ريال">&#x20C1;</span>.</p>
       <div class="divider" style="margin-top:1rem"><svg viewBox="0 0 24 24"><use href="#ic-diamond"/></svg></div>
     </div>
@@ -1101,7 +1101,7 @@
       <div class="contact__card reveal">
         <div class="info-row">
           <span class="info-row__icon"><svg><use href="#ic-pin"/></svg></span>
-          <div><h4>العنوان</h4><p>الحديدة — شارع صنعاء، أمام كلية الشفاء</p></div>
+          <div><h4>العنوان</h4><p data-address>الحديدة — شارع صنعاء، أمام كلية الشفاء</p></div>
         </div>
         <div class="info-row">
           <span class="info-row__icon"><svg><use href="#ic-phone"/></svg></span>
@@ -1115,7 +1115,7 @@
         </div>
         <div class="info-row">
           <span class="info-row__icon"><svg><use href="#ic-clock"/></svg></span>
-          <div><h4>أوقات العمل</h4><p>يومياً — من العصر حتى منتصف الليل</p><span class="open-badge" data-open-badge hidden></span></div>
+          <div><h4>أوقات العمل</h4><p data-hours>يومياً — من العصر حتى منتصف الليل</p><span class="open-badge" data-open-badge hidden></span></div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem">
           <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اتصل الآن</a>
@@ -1198,7 +1198,9 @@
 
 <button class="to-top" aria-label="العودة للأعلى"><svg><use href="#ic-arrow-up"/></svg></button>
 
-<script src="assets/js/reviews.js?v=12" defer></script>
-<script src="assets/js/main.js?v=12" defer></script>
+<script src="assets/js/mt-config.js?v=13"></script>
+<script src="assets/js/reviews.js?v=13" defer></script>
+<script src="assets/js/main.js?v=13" defer></script>
+<script src="assets/js/content.js?v=13" defer></script>
 </body>
 </html>
