@@ -55,20 +55,133 @@
   onScroll();
   if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
 
-  /* ---------- Menu filter ---------- */
-  var tabs = document.querySelectorAll(".menu__tab");
-  var cats = document.querySelectorAll(".cat");
-  tabs.forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      var f = tab.getAttribute("data-filter");
-      tabs.forEach(function (t) { t.classList.remove("active"); });
-      tab.classList.add("active");
-      cats.forEach(function (c) {
-        var show = f === "all" || c.getAttribute("data-cat") === f;
-        c.style.display = show ? "" : "none";
+  /* ---------- Horizontal sliders (menu categories + offers) ----------
+     The tracks are native scroll-snap containers, so swiping already works
+     with JS off. Here we add arrows, dots and the active-state syncing. */
+  var RTL = document.documentElement.getAttribute("dir") === "rtl";
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* how far (in px, physical) the track must scroll to bring `el` to its start edge */
+  function startDelta(track, el) {
+    var t = track.getBoundingClientRect();
+    var s = el.getBoundingClientRect();
+    var cs = getComputedStyle(track);
+    return RTL
+      ? s.right - (t.right - parseFloat(cs.paddingRight || 0))
+      : s.left - (t.left + parseFloat(cs.paddingLeft || 0));
+  }
+  function nudge(el, dx) {
+    if (Math.abs(dx) < 1) return;
+    if (REDUCED || !("scrollBehavior" in document.documentElement.style)) el.scrollLeft += dx;
+    else el.scrollBy({ left: dx, behavior: "smooth" });
+  }
+
+  function initSlider(root, onChange) {
+    var track = root.querySelector("[data-hs-track]");
+    if (!track) return null;
+    var slides = Array.prototype.slice.call(track.children);
+    if (!slides.length) return null;
+
+    var dotsWrap = root.querySelector("[data-hs-dots]");
+    var prevBtn = root.querySelector('[data-hs="prev"]');
+    var nextBtn = root.querySelector('[data-hs="next"]');
+    var dots = [];
+    var index = 0;
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      nudge(track, startDelta(track, slides[i]));
+    }
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = "";
+      slides.forEach(function (s, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "hslider__dot" + (i === 0 ? " active" : "");
+        b.setAttribute("aria-label", "الشريحة " + (i + 1));
+        b.addEventListener("click", function () { goTo(i); });
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      });
+    }
+
+    [prevBtn, nextBtn].forEach(function (btn) {
+      if (!btn) return;
+      btn.removeAttribute("hidden");
+      btn.addEventListener("click", function () {
+        goTo(index + (btn.getAttribute("data-hs") === "next" ? 1 : -1));
       });
     });
-  });
+
+    /* leading visible slide = the one whose start edge sits closest to the track's start */
+    function current() {
+      var best = 0, bestD = Infinity;
+      for (var i = 0; i < slides.length; i++) {
+        var d = Math.abs(startDelta(track, slides[i]));
+        if (d < bestD - 1) { bestD = d; best = i; }
+      }
+      return best;
+    }
+
+    function sync() {
+      index = current();
+      dots.forEach(function (d, i) { d.classList.toggle("active", i === index); });
+      var max = track.scrollWidth - track.clientWidth;
+      var pos = Math.abs(track.scrollLeft);
+      if (prevBtn) prevBtn.disabled = pos <= 2;
+      if (nextBtn) nextBtn.disabled = pos >= max - 2;
+      if (onChange) onChange(index, slides);
+    }
+
+    var ticking = false;
+    track.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; sync(); });
+    }, { passive: true });
+    window.addEventListener("resize", sync);
+
+    sync();
+    return { goTo: goTo, sync: sync, slides: slides };
+  }
+
+  /* menu: chips drive the slides, and the slides drive the chips back */
+  (function () {
+    var strip = document.querySelector("[data-menu-tabs]");
+    var menu = initSlider(document.getElementById("menuSlider"), function (i, slides) {
+      if (!strip) return;
+      var cat = slides[i].getAttribute("data-cat");
+      strip.querySelectorAll(".menu__tab").forEach(function (t) {
+        var on = t.getAttribute("data-filter") === cat;
+        t.classList.toggle("active", on);
+        t.setAttribute("aria-current", on ? "true" : "false");
+        if (on) centerChip(t);
+      });
+      slides.forEach(function (s, si) { s.classList.toggle("is-current", si === i); });
+    });
+    if (!menu || !strip) return;
+
+    function centerChip(chip) {
+      if (strip.scrollWidth <= strip.clientWidth + 4) return;
+      var t = strip.getBoundingClientRect();
+      var c = chip.getBoundingClientRect();
+      nudge(strip, (c.left + c.width / 2) - (t.left + t.width / 2));
+    }
+
+    strip.querySelectorAll(".menu__tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var f = tab.getAttribute("data-filter");
+        for (var i = 0; i < menu.slides.length; i++) {
+          if (menu.slides[i].getAttribute("data-cat") === f) { menu.goTo(i); break; }
+        }
+        centerChip(tab);
+      });
+    });
+  })();
+
+  /* offers */
+  initSlider(document.getElementById("offersSlider"));
 
   /* ---------- Scroll reveal ---------- */
   var reveals = document.querySelectorAll(".reveal");
