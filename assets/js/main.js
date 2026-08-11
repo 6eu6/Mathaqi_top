@@ -138,12 +138,36 @@
     track.addEventListener("scroll", function () {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(function () { ticking = false; sync(); });
+      requestAnimationFrame(function () { ticking = false; sync(); restart(); });
     }, { passive: true });
     window.addEventListener("resize", sync);
 
+    /* ---- autoplay (opt-in via data-hs-auto="ms") ---- */
+    var every = parseInt(root.getAttribute("data-hs-auto"), 10);
+    var timer = null;
+    function tick() { goTo(index >= slides.length - 1 ? 0 : index + 1); }
+    function play() {
+      if (!every || REDUCED || document.hidden) return;
+      stop();
+      timer = setInterval(tick, every);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    /* any interaction resets the countdown rather than fighting the user */
+    function restart() { if (timer) { stop(); play(); } }
+
+    if (every) {
+      ["mouseenter", "focusin", "touchstart", "pointerdown"].forEach(function (ev) {
+        root.addEventListener(ev, stop, { passive: true });
+      });
+      ["mouseleave", "focusout", "touchend", "pointerup"].forEach(function (ev) {
+        root.addEventListener(ev, play, { passive: true });
+      });
+      document.addEventListener("visibilitychange", function () { document.hidden ? stop() : play(); });
+      play();
+    }
+
     sync();
-    return { goTo: goTo, sync: sync, slides: slides };
+    return { goTo: goTo, sync: sync, slides: slides, stop: stop, play: play };
   }
 
   /* menu: chips drive the slides, and the slides drive the chips back */
@@ -182,9 +206,15 @@
 
   /* Both sliders. Re-callable: the CMS loader re-renders the tracks from the
      database and then asks for a fresh init on the new DOM. */
+  var sliders = [];
   function initSliders() {
+    sliders.forEach(function (s) { if (s && s.stop) s.stop(); });
+    sliders = [];
     initMenuSlider();
-    initSlider(document.getElementById("offersSlider"));
+    ["heroSlider", "offersSlider"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) sliders.push(initSlider(el));
+    });
   }
   initSliders();
 

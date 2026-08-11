@@ -106,18 +106,17 @@
       "</article>";
   }
 
-  function offerHTML(o) {
-    var media;
+  /* one offer, rendered as a wide hero advert */
+  function promoHTML(o) {
+    var art;
     if (o.image_fit === "none" || !o.image_url) {
-      media = '<div class="offer-slide__media offer-slide__media--disc">' +
-        (o.big_text ? '<span class="offer-slide__big">' + esc(o.big_text) + "</span>" : "") +
-        badgeHTML(o) + "</div>";
+      art = '<div class="promo__art promo__art--big">' +
+        (o.big_text ? '<span class="promo__big">' + esc(o.big_text) + "</span>" : "") + "</div>";
     } else {
-      var mod = o.image_fit === "cover" ? " offer-slide__media--cover"
-              : o.image_fit === "round" ? " offer-slide__media--round" : "";
-      media = '<div class="offer-slide__media' + mod + '">' +
-        '<img src="' + esc(img(o.image_url)) + '" alt="' + esc(o.title) + '" loading="lazy" />' +
-        badgeHTML(o) + "</div>";
+      var mod = o.image_fit === "cover" ? " promo__art--cover"
+              : o.image_fit === "round" ? " promo__art--round" : "";
+      art = '<div class="promo__art' + mod + '">' +
+        '<img src="' + esc(img(o.image_url)) + '" alt="' + esc(o.title) + '" loading="lazy" /></div>';
     }
 
     var price = "";
@@ -129,17 +128,15 @@
         '<span class="new">' + esc(money(o.new_price)) + " " + RIYAL + "</span></div>";
     }
 
-    return '<article class="offer-slide' + (o.featured ? " offer-slide--feature" : "") +
-        (o.image_fit === "none" ? " offer-slide--disc" : "") + ' hslider__slide">' +
-      media +
-      '<div class="offer-slide__body">' +
-        "<h3>" + esc(o.title) + "</h3>" +
+    return '<article class="promo hslider__slide">' +
+      '<div class="promo__body">' + badgeHTML(o) +
+        "<h2>" + esc(o.title) + "</h2>" +
         (o.subtitle ? "<p>" + esc(o.subtitle) + "</p>" : "") +
-        '<div class="offer-slide__foot">' + price +
-          '<a class="btn offer-slide__cta" href="tel:+967' + esc(PHONE1) + '">' +
-          '<svg><use href="#ic-phone"/></svg> اطلب</a>' +
+        '<div class="promo__foot">' + price +
+          '<a class="btn" href="tel:+967' + esc(PHONE1) + '">' +
+          '<svg><use href="#ic-phone"/></svg> اطلب العرض</a>' +
         "</div>" +
-      "</div></article>";
+      "</div>" + art + "</article>";
   }
 
   function badgeHTML(o) {
@@ -232,7 +229,11 @@
     }
 
     if (offers.length) {
-      changed = setHTML(document.querySelector("#offersSlider [data-hs-track]"), offers.map(offerHTML).join("")) || changed;
+      /* keep the brand slide (it carries the page's H1) and refresh the ads after it */
+      var heroTrack = document.querySelector("#heroSlider [data-hs-track]");
+      if (heroTrack && heroTrack.firstElementChild) {
+        changed = setHTML(heroTrack, heroTrack.firstElementChild.outerHTML + offers.map(promoHTML).join("")) || changed;
+      }
     }
 
     if (dishes.length) {
