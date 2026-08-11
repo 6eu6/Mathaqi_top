@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الصفحة غير موجودة | مذاقي توب</title>
+  <meta name="description" content="الصفحة التي تبحث عنها غير موجودة — عد إلى موقع مطعم وكافيه مذاقي توب في الحديدة." />
+  <meta name="theme-color" content="#faf5ea" />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/assets/img/icon-180.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
+
+  <script>
+    /* set theme before paint — shares the visitor's choice with the main site */
+    (function(){try{var s=localStorage.getItem('mt-theme');var d=window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();
+  </script>
+
+  <!-- Self-contained on purpose: a 404 is served from any depth (/a/b/c), and on
+       GitHub Pages the site lives under a sub-path, so no relative asset paths. -->
+  <style>
+    :root {
+      --gold:#c79a3b; --gold-soft:#e2c165; --gold-deep:#a87c29; --ember:#c15b34;
+      --bg:#faf5ea; --bg-2:#f2e8d6; --panel:#ffffff; --line:#e7dcc6;
+      --ink:#241c14; --ink-soft:#6c5e4c; --ink-faint:#9c8d78;
+      --shadow:0 18px 50px -24px rgba(60,42,16,.40);
+      --shadow-sm:0 8px 26px -18px rgba(60,42,16,.45);
+      --veil:radial-gradient(120% 90% at 78% -10%, rgba(199,154,59,.18), transparent 60%);
+      --grain:.035;
+    }
+    html[data-theme="dark"] {
+      --bg:#15110c; --bg-2:#1b1610; --panel:#201a13; --line:#3a3024;
+      --ink:#f1e9da; --ink-soft:#c4b69f; --ink-faint:#8c7f6a;
+      --shadow:0 24px 60px -28px rgba(0,0,0,.8);
+      --shadow-sm:0 12px 34px -22px rgba(0,0,0,.85);
+      --veil:radial-gradient(120% 90% at 78% -10%, rgba(199,154,59,.22), transparent 58%);
+      --grain:.05;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { -webkit-text-size-adjust:100%; }
+    body {
+      font-family:"IBM Plex Sans Arabic", system-ui, "Segoe UI", sans-serif;
+      background:var(--bg); color:var(--ink); line-height:1.7; min-height:100svh;
+      display:grid; place-items:center; padding:2rem 1.2rem; overflow-x:hidden;
+    }
+    body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+      background:var(--veil), radial-gradient(90% 60% at 10% 100%, rgba(168,124,41,.10), transparent 55%); }
+    body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:var(--grain);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+
+    .card {
+      width:min(680px, 100%); text-align:center;
+      background:var(--panel); border:1px solid var(--line); border-radius:28px;
+      box-shadow:var(--shadow); padding:clamp(2rem, 6vw, 3.4rem) clamp(1.3rem, 5vw, 3rem);
+    }
+
+    /* the "burnt plate" mark: 404 sitting on an empty serving dish */
+    .art { position:relative; width:min(230px, 62vw); margin:0 auto 1.6rem; }
+    .art svg { width:100%; height:auto; color:var(--gold); }
+    .art__num {
+      position:absolute; inset-block-start:6%; inset-inline:0;
+      font-family:"Reem Kufi", sans-serif; font-weight:700; line-height:1;
+      font-size:clamp(3.2rem, 13vw, 4.6rem);
+      background:linear-gradient(135deg,#efd58a 0%,#d3a848 42%,#a87c29 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+    }
+    html[data-theme="dark"] .art__num { background:linear-gradient(135deg,#f4dd97 0%,#e2c165 45%,#c79a3b 100%);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+    .kicker { display:inline-flex; align-items:center; gap:.55rem;
+      font-family:"Reem Kufi", sans-serif; font-weight:600; font-size:.9rem; color:var(--gold-deep); }
+    html[data-theme="dark"] .kicker { color:var(--gold-soft); }
+    h1 { font-family:"Reem Kufi","IBM Plex Sans Arabic",sans-serif; font-weight:600;
+      font-size:clamp(1.6rem, 5vw, 2.4rem); line-height:1.35; margin:.7rem 0 .6rem; }
+    .lead { color:var(--ink-soft); font-size:1.02rem; max-width:44ch; margin:0 auto; }
+
+    .divider { display:flex; align-items:center; justify-content:center; gap:1rem;
+      color:var(--gold); opacity:.9; margin:1.6rem 0; }
+    .divider::before, .divider::after { content:""; height:1px; width:min(120px,20vw);
+      background:linear-gradient(var(--_d, to left), var(--gold), transparent); }
+    .divider::after { --_d:to right; }
+    .divider svg { width:26px; height:26px; }
+
+    .actions { display:flex; flex-wrap:wrap; gap:.8rem; justify-content:center; }
+    .btn { --_bg:var(--gold); --_fg:#1c1305;
+      display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+      padding:.85rem 1.7rem; border-radius:999px; border:1px solid transparent;
+      font-family:"IBM Plex Sans Arabic",sans-serif; font-weight:700; font-size:1rem;
+      background:var(--_bg); color:var(--_fg); box-shadow:0 10px 24px -12px rgba(199,154,59,.7);
+      transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s, color .25s; }
+    .btn:hover { transform:translateY(-3px); box-shadow:0 16px 34px -14px rgba(199,154,59,.85); }
+    .btn svg { width:18px; height:18px; }
+    .btn--ghost { --_bg:transparent; --_fg:var(--ink); border-color:var(--line); box-shadow:none; }
+    .btn--ghost:hover { border-color:var(--gold); color:var(--gold-deep); box-shadow:none; }
+    html[data-theme="dark"] .btn--ghost:hover { color:var(--gold-soft); }
+    .btn--wa { --_bg:#25D366; --_fg:#fff; box-shadow:0 10px 24px -12px rgba(37,211,102,.8); }
+    .btn--wa:hover { box-shadow:0 16px 34px -14px rgba(37,211,102,.9); }
+
+    .foot { margin-top:1.8rem; font-size:.82rem; color:var(--ink-faint); }
+    .foot b { font-family:"Marcellus", serif; letter-spacing:2px; text-transform:uppercase;
+      font-weight:400; font-size:.72rem; display:block; margin-top:.25rem; }
+
+    @media (prefers-reduced-motion: reduce) { .btn { transition:none; } .btn:hover { transform:none; } }
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <div class="art">
+      <div class="art__num">404</div>
+      <!-- empty serving dish + cloche: "الطبق فاضي" -->
+      <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <ellipse cx="100" cy="96" rx="72" ry="11" opacity=".28"/>
+        <path d="M28 92h144" />
+        <path d="M36 92c0-24 28-40 64-40s64 16 64 40" opacity=".55"/>
+        <path d="M100 46v-6" opacity=".55"/>
+        <circle cx="100" cy="37" r="4" opacity=".55"/>
+        <path d="M14 104h172" opacity=".22"/>
+        <path d="M56 24c2 4 0 6-2 9M100 16c2 4 0 6-2 9M144 24c2 4 0 6-2 9" opacity=".35"/>
+      </svg>
+    </div>
+
+    <span class="kicker">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2c.5 4.4 1.6 5.5 6 6-4.4.5-5.5 1.6-6 6-.5-4.4-1.6-5.5-6-6 4.4-.5 5.5-1.6 6-6Z"/></svg>
+      عذراً
+    </span>
+
+    <h1>الصفحة اللي تدوّرها مو موجودة</h1>
+    <p class="lead">يمكن الرابط قديم أو فيه خطأ إملائي — بس لا تشيل هم، المنيو والعروض كلها على بُعد ضغطة.</p>
+
+    <div class="divider" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4l3 4-3 4-3-4 3-4Z"/></svg>
+    </div>
+
+    <div class="actions">
+      <a class="btn" data-home href="/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/></svg>
+        الرئيسية
+      </a>
+      <a class="btn btn--ghost" data-home data-hash="#menu" href="/#menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v8M6 3v5a2 2 0 0 0 4 0V3M8 11v10"/><path d="M16 3c-1.5 0-2.5 2-2.5 5s1 3.5 2.5 3.5V21"/></svg>
+        المنيو
+      </a>
+      <a class="btn btn--ghost" href="tel:+967738696360">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.5 4.5-2 1.3a11 11 0 0 0 4.7 4.7l1.3-2L19 15v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 7.2 2 2 0 0 1 6 5V3Z"/></svg>
+        اتصل بنا
+      </a>
+      <a class="btn btn--wa" href="https://wa.me/967738696360?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%85%D8%B0%D8%A7%D9%82%D9%8A%20%D8%AA%D9%88%D8%A8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A7.5 7.5 0 1 1 8 19.1L4 20Z"/><path d="M9 8.5c-.3 0-.6.1-.8.4-.3.3-.9.8-.9 2s.9 2.3 1 2.5c.1.2 1.7 2.8 4.3 3.7 2.1.8 2.6.6 3 .6.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.4l-1.5-.7c-.2-.1-.4-.1-.6.1l-.6.8c-.1.2-.3.2-.5.1a6 6 0 0 1-2.9-2.6c-.1-.2 0-.4.1-.5l.5-.6c.1-.2.1-.3 0-.5l-.7-1.6c-.2-.4-.4-.3-.5-.3H9Z"/></svg>
+        واتساب
+      </a>
+    </div>
+
+    <p class="foot">
+      مذاقي توب — الحديدة، أمام كلية الشفاء
+      <b>Mathaqi Top</b>
+    </p>
+  </main>
+
+  <script>
+    /* GitHub Pages serves this site from /<repo>/, Vercel from /.
+       Resolve the site root once so "الرئيسية" always lands in the right place. */
+    (function () {
+      var root = "/";
+      if (location.hostname.indexOf("github.io") !== -1) {
+        var seg = location.pathname.split("/").filter(Boolean)[0];
+        if (seg) root = "/" + seg + "/";
+      }
+      document.querySelectorAll("[data-home]").forEach(function (a) {
+        a.setAttribute("href", root + (a.getAttribute("data-hash") || ""));
+      });
+    })();
+  </script>
+</body>
+</html>
