@@ -313,8 +313,8 @@ insert into public.mathaqi_offers (title, subtitle, badge, badge_gold, old_price
 select * from (values
   ('زنجر أو فاهيتا + شاورما عربي + برجر دجاج','ثلاث وجبات في عرض واحد.','عرض الخميس والجمعة',false,2650::numeric,2000::numeric,null::text,'assets/img/food/zinger.webp','contain',true,null::text,1),
   ('زنجر أو فاهيتا + شاورما عربي + برجر لحم','ثلاث وجبات في عرض واحد.','عرض الخميس والجمعة',false,2800,2300,null,'assets/img/food/shawarma-hero.webp','contain',true,null,2),
-  ('٣ برجر لحم','اشترِ ٢ والثالث علينا — لحم طازج.','الثالث مجاناً',false,3000,2000,null,'assets/img/food/burger.webp','cover',false,null,3),
-  ('٣ برجر دجاج','اشترِ ٢ والثالث علينا — دجاج مشوي.','الثالث مجاناً',false,2250,1500,null,'assets/img/food/chkburger.webp','cover',false,null,4),
+  ('٣ برجر لحم','اشترِ ٢ والثالث علينا — لحم طازج.','الثالث مجاناً',false,3000,2000,null,'assets/img/food/burger.webp','contain',false,null,3),
+  ('٣ برجر دجاج','اشترِ ٢ والثالث علينا — دجاج مشوي.','الثالث مجاناً',false,2250,1500,null,'assets/img/food/chkburger.webp','contain',false,null,4),
   ('برجر وعصير فراولة','إثنين برجر عليك وإثنين عصير فراولة علينا.','برجر + عصير',true,null,null,'يبدأ 1500','assets/img/food/juice.webp','round',false,null,5),
   ('بيتزا خضار + قطعتين بروست + برجر دجاج','وجبة متكاملة تكفي المجموعة — عرض الخميس والجمعة.','كومبو العائلة',false,4000,3000,null,'assets/img/food/pizza.webp','round',false,null,6),
   ('خصم خاص','سارع بالاستفادة من العروض — خصم ٢٠٪ لطلاب الثانوية.','لطلاب الثانوية',true,null,null,null,null,'none',false,'20%',7)

@@ -270,43 +270,137 @@ html[data-theme="dark"] .theme-toggle .i-moon { display: block; }
   body.nav-open { overflow: hidden; }
 }
 
-/* ----------  Hero  ---------- */
-.hero { position: relative; padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(4rem, 8vw, 6rem); overflow: hidden; }
-.hero__grid {
-  display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(2rem, 5vw, 4rem);
+/* ----------  Hero banner: rectangular auto-playing offer ads  ----------
+   Shape and furniture follow the reference store: a wide rounded rectangle
+   directly under the header (21/9 on phones, 2/1 from md up), copy centred at
+   the bottom over a dark bottom-up scrim, with arrows and dots sitting inside
+   the frame. Every image also paints a blurred copy of itself behind, so a
+   product cut-out or a portrait photo still fills the banner cleanly. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
-.hero__eyebrow { margin-bottom: 1.2rem; }
-.hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.4rem); margin-bottom: 1.1rem; letter-spacing: -.5px; }
-.hero h1 .word { background: var(--grad-gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-.hero__sub { font-size: clamp(1.05rem, 2.2vw, 1.28rem); color: var(--ink-soft); max-width: 46ch; margin-bottom: .4rem; }
-.hero__latin { font-family: "Marcellus", serif; letter-spacing: 5px; text-transform: uppercase; font-size: .8rem; color: var(--ink-faint); margin-bottom: 2rem; }
-.hero__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 2rem; }
-.hero__phones { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; color: var(--ink-soft); font-size: .95rem; }
-.hero__phones a { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--ink); direction: ltr; }
-.hero__phones a:hover { color: var(--gold-deep); }
-.hero__phones svg { width: 16px; height: 16px; color: var(--gold); }
+.banner { padding: 1rem 0 1.5rem; }
+@media (min-width: 768px) { .banner { padding: 1.5rem 0 2rem; } }
 
-/* hero medallion / signature artwork */
-.hero__art { position: relative; display: grid; place-items: center; aspect-ratio: 1; }
-.hero__medallion {
-  position: relative; width: min(420px, 78%); aspect-ratio: 1; border-radius: 50%;
-  display: grid; place-items: center;
-  background:
-    radial-gradient(circle at 50% 42%, var(--panel), var(--panel-2) 70%, var(--bg-2));
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow), inset 0 0 0 10px color-mix(in oklab, var(--gold) 10%, transparent);
+.hslider--banner { --hs-slide: 100%; --hs-gap: .75rem; }
+.hslider--banner .hslider__track { padding: 0; margin-inline: 0; scroll-padding-inline: 0; }
+
+.ad {
+  position: relative; display: block; overflow: hidden; isolation: isolate;
+  /* the reference runs 21/9 on phones, but its slides are pre-made artwork;
+     ours carry live Arabic titles + prices, so 16/9 keeps the same banner
+     shape with room to actually read them */
+  aspect-ratio: 16 / 9; border-radius: 1rem;
+  background: #191309; border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 8px 30px rgba(10,10,10,.15);
 }
-.hero__medallion img { width: 74%; height: 74%; object-fit: contain; }
-.hero__medallion .logo-light { display: var(--logo-light); }
-.hero__medallion .logo-dark  { display: var(--logo-dark); }
-/* rotating dotted gold ring */
-.hero__ring { position: absolute; inset: -2%; color: var(--gold); opacity: .55; animation: spin 60s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .hero__ring { animation: none; } }
-@keyframes spin { to { transform: rotate(360deg); } }
-.hero__spark { position: absolute; color: var(--gold-soft); filter: drop-shadow(0 0 6px rgba(226,193,101,.6)); }
-.hero__spark.s1 { top: 4%; inset-inline-start: 12%; width: 26px; animation: float 6s ease-in-out infinite; }
-.hero__spark.s2 { bottom: 8%; inset-inline-end: 6%; width: 20px; animation: float 7s ease-in-out infinite .8s; }
-@keyframes float { 0%,100%{ transform: translateY(0) rotate(0); } 50%{ transform: translateY(-12px) rotate(8deg);} }
+@media (min-width: 768px) { .ad { aspect-ratio: 2 / 1; border-radius: 1.5rem; } }
+
+/* blurred fill so any aspect ratio looks intentional */
+.ad__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.15); filter: blur(26px) brightness(.5) saturate(1.1);
+  pointer-events: none;
+}
+.ad__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  /* lift the product clear of the copy sitting at the bottom */
+  padding: 3% 4% 21%;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.ad:hover .ad__img { transform: scale(1.03); }
+
+.ad__scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.3) 52%, rgba(0,0,0,.1));
+}
+
+.ad__badge {
+  position: absolute; inset-block-start: .7rem; inset-inline-start: .8rem; z-index: 3;
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .28rem .7rem; border-radius: 999px;
+  background: var(--ember); color: #fff; font-weight: 700; font-size: clamp(.62rem, 2vw, .78rem);
+  box-shadow: 0 8px 18px -10px rgba(193,91,52,.9);
+}
+.ad__badge.gold { background: var(--gold); color: #1c1305; }
+.ad__badge-ic { width: 13px; height: 13px; }
+
+.ad__body {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  gap: .3rem; text-align: center; color: #fff;
+  padding: 0 1.2rem 1.9rem;
+}
+@media (min-width: 768px) { .ad__body { gap: .5rem; padding: 0 2rem 3rem; } }
+
+
+.ad__title {
+  font-family: "Reem Kufi", sans-serif; font-weight: 700; line-height: 1.35;
+  font-size: clamp(.88rem, 3.1vw, 2.1rem); max-width: 24ch;
+  text-shadow: 0 3px 12px rgba(0,0,0,.55);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ad__sub {
+  font-size: clamp(.66rem, 1.9vw, 1.05rem); color: rgba(255,255,255,.85);
+  text-shadow: 0 2px 8px rgba(0,0,0,.5);
+  display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+}
+/* on a phone the strip is short — the title and price carry the message */
+@media (max-width: 767px) { .ad__sub { display: none; } }
+.ad__price { display: inline-flex; align-items: baseline; gap: .45rem; font-family: "Reem Kufi", sans-serif; }
+.ad__price s { color: rgba(255,255,255,.6); font-size: clamp(.64rem, 1.9vw, .95rem); }
+.ad__price b { color: var(--gold-soft); font-size: clamp(1rem, 3.4vw, 2rem); white-space: nowrap;
+  text-shadow: 0 3px 12px rgba(0,0,0,.5); }
+.ad__price .cur { font-size: .62em; opacity: .85; }
+
+.ad__cta {
+  display: none; align-items: center; gap: .4rem; margin-top: .3rem;
+  padding: .5rem 1.4rem; border-radius: 999px;
+  background: var(--gold); color: #1c1305; font-weight: 700; font-size: .92rem;
+  box-shadow: 0 10px 24px -12px rgba(199,154,59,.9);
+  transition: transform .25s, box-shadow .25s;
+}
+@media (min-width: 768px) { .ad__cta { display: inline-flex; } }
+.ad:hover .ad__cta { transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgba(199,154,59,.95); }
+.ad__cta svg { width: 15px; height: 15px; }
+
+.ad--plain { background: linear-gradient(140deg, #1c130b, #3a280f); }
+.ad--plain .ad__scrim { background: linear-gradient(to top, rgba(0,0,0,.55), transparent 60%); }
+.ad__big {
+  position: absolute; inset-block-start: 34%; inset-inline: 0; transform: translateY(-50%);
+  text-align: center; font-family: "Reem Kufi", sans-serif; font-weight: 700; line-height: 1;
+  font-size: clamp(2.2rem, 9vw, 4.6rem); color: var(--gold-soft);
+  text-shadow: 0 16px 34px rgba(0,0,0,.5);
+}
+
+/* arrows + dots live inside the frame, like the reference */
+.hslider--banner .hslider__arrow {
+  position: absolute; inset-block-start: 50%; transform: translateY(-50%); z-index: 4;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.14);
+  color: #fff; box-shadow: none;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity .3s, background .25s;
+}
+.hslider--banner .hslider__arrow:hover { background: rgba(255,255,255,.32); transform: translateY(-50%); }
+.hslider--banner:hover .hslider__arrow:not([disabled]) { opacity: 1; }
+.hslider--banner .hslider__arrow--prev { inset-inline-start: .9rem; }
+.hslider--banner .hslider__arrow--next { inset-inline-end: .9rem; }
+@media (min-width: 768px) { .hslider--banner .hslider__arrow { width: 48px; height: 48px; } }
+
+.hslider--banner .hslider__nav {
+  position: absolute; inset-block-end: .7rem; inset-inline: 0; z-index: 4;
+  margin: 0; pointer-events: none;
+}
+@media (min-width: 768px) { .hslider--banner .hslider__nav { inset-block-end: 1rem; } }
+.hslider--banner .hslider__dots { pointer-events: auto; gap: .3rem; }
+.hslider--banner .hslider__dot {
+  width: 8px; height: 8px; background: rgba(255,255,255,.45);
+  box-shadow: 0 1px 4px rgba(0,0,0,.4);
+}
+.hslider--banner .hslider__dot:hover { background: rgba(255,255,255,.7); }
+.hslider--banner .hslider__dot.active { background: #fff; width: 26px; }
 
 /* ----------  Marquee strip  ---------- */
 .strip { border-block: 1px solid var(--line); background: color-mix(in oklab, var(--gold) 8%, var(--bg)); overflow: hidden; }
@@ -459,69 +553,7 @@ html[data-theme="dark"] .item__price { color: var(--gold-soft); }
   background: radial-gradient(40% 30% at 50% 78%, rgba(244,166,60,.35), transparent 70%); }
 .signature__spark { position: absolute; bottom: 8%; inset-inline-start: 12%; width: 46px; color: var(--gold-soft); opacity: .8; animation: flicker 2.6s ease-in-out infinite; }
 
-/* ----------  Hero carousel: brand slide + auto-playing offer ads  ---------- */
-.hslider--hero { --hs-slide: 100%; --hs-gap: 1rem; }
-.hslider--hero .hslider__track { padding-block: .2rem 1rem; align-items: stretch; }
-/* the slides ARE the brand grid / promo cards — only give them a common floor
-   so a short offer still fills the frame and autoplay never jolts the height */
-.hslider--hero .hslider__slide { min-height: clamp(400px, 62svh, 560px); }
-.hslider--hero .hslider__arrow--prev { inset-inline-start: -1rem; }
-.hslider--hero .hslider__arrow--next { inset-inline-end: -1rem; }
-.hslider--hero .hslider__nav { margin-top: .2rem; }
-
-/* promo banner = one offer, presented as a wide advert */
-.promo {
-  display: grid; grid-template-columns: 1fr .85fr; align-items: center;
-  border-radius: 28px; overflow: hidden;
-  background: linear-gradient(135deg, #1c130b, #2a1c0f); color: #f3e9d8;
-  border: 1px solid color-mix(in oklab, var(--gold) 32%, #3a2a16); box-shadow: var(--shadow);
-}
-.promo__body { padding: clamp(1.6rem, 4vw, 3.2rem); }
-.promo__body h2 { color: #fff; font-size: clamp(1.35rem, 3.2vw, 2.15rem); margin: .8rem 0 .5rem; line-height: 1.4; }
-.promo__body p { color: #cbb89b; margin-bottom: 1.4rem; font-size: .96rem; }
-.promo .offer__badge { position: static; display: inline-flex; }
-.promo__foot { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-.promo .offer__price .old { color: #9c8a72; }
-.promo .offer__price .new { color: var(--gold-soft); font-size: 1.9rem; }
-.promo .offer__price .cur { color: var(--gold-soft); }
-
-.promo__art {
-  position: relative; align-self: stretch; display: grid;
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; overflow: hidden;
-  min-height: 220px;
-  background: radial-gradient(62% 62% at 50% 55%, rgba(193,91,52,.30), transparent 72%);
-}
-.promo__art img { width: var(--promo-img-w, min(82%, 300px)); height: auto; transform: rotate(-7deg);
-  filter: drop-shadow(0 22px 30px rgba(0,0,0,.5)); }
-.promo__art--cover img { width: 100%; height: 100%; object-fit: cover; transform: none; filter: none; }
-.promo__art--round img { width: 100%; height: 100%; object-fit: contain; padding: 6%; transform: none; }
-.promo__art--big { background: linear-gradient(150deg, #1c130b, #33230f); }
-.promo__big { font-family: "Reem Kufi", sans-serif; font-weight: 700; line-height: 1;
-  font-size: clamp(3.4rem, 11vw, 5.6rem); color: var(--gold-soft); text-shadow: 0 16px 34px rgba(0,0,0,.5); }
-
-@media (max-width: 860px) {
-  /* the artwork absorbs the leftover height, so a short offer never leaves a
-     dead band under it when the track matches the tallest slide */
-  .promo { grid-template-columns: 1fr; grid-template-rows: minmax(130px, 1fr) auto;
-           --promo-img-w: min(72%, 240px); }
-  .promo__art { order: -1; min-height: 0; }
-  .promo__body { padding: 1.3rem 1.3rem 1.6rem; }
-  .promo__foot { gap: .9rem; }
-  .promo .offer__price .new { font-size: 1.55rem; }
-  .promo__body h2 { margin-top: .6rem; font-size: clamp(1.2rem, 5.2vw, 1.6rem); }
-
-  /* the brand slide sets the frame height for every ad — keep it compact so the
-     offer headline and price stay above the fold on a phone */
-  .hslider--hero .hslider__slide { min-height: 0; }
-  .hslider--hero .hero__art { max-width: 210px; margin-inline: auto; }
-  .hslider--hero .hero__grid { gap: 1.4rem; align-content: center; }
-  .hslider--hero .hero h1, .hslider--hero .display { font-size: clamp(2.1rem, 8vw, 2.9rem); }
-  .hslider--hero .hero__latin { margin-bottom: 1.3rem; }
-  .hslider--hero .hero__cta { margin-bottom: 1.2rem; }
-  .hslider--hero .hero__phones { display: none; }
-}
-
-/* ----------  Shared offer bits (badge + price), used by the promo banners  ---------- */
+/* ----------  Shared offer bits (badge + price)  ---------- */
 .offer__badge {
   display: inline-flex; align-items: center; gap: .4rem; padding: .34rem .85rem; border-radius: 999px;
   background: var(--ember); color: #fff; font-weight: 700; font-size: .74rem;
@@ -766,10 +798,7 @@ html[data-theme="dark"] .open-badge.is-open { color: #8fdca6; background: color-
   .shot:nth-child(1){ grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 760px) {
-  .hero__grid { grid-template-columns: 1fr; text-align: center; }
-  .hero__art { order: -1; max-width: 360px; margin-inline: auto; }
-  .hero__cta, .hero__phones, .kicker, .divider { justify-content: center; }
-  .hero__sub { margin-inline: auto; }
+  .kicker, .divider { justify-content: center; }
 }
 @media (max-width: 540px) {
   .hslider { --hs-gap: 1rem; }

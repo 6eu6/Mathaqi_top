@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=14" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=16" />
   <script>
     /* set theme before paint to avoid flash */
     (function(){try{var s=localStorage.getItem('mt-theme');var d=window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));}catch(e){}})();
@@ -647,141 +647,99 @@
 </header>
 
 <main>
-<!-- ===================== HERO — brand + auto-playing offer ads ===================== -->
-<section class="hero" id="home">
+<!-- ===================== HERO BANNER — auto-playing offer ads ===================== -->
+<h1 class="sr-only">مذاقي توب — مطعم وكافيه في الحديدة</h1>
+<section class="banner" id="home">
   <div class="wrap">
-    <div class="hslider hslider--hero" data-hslider data-hs-auto="6500" id="heroSlider">
-      <button class="hslider__arrow hslider__arrow--prev" type="button" data-hs="prev" aria-label="السابق" hidden><svg><use href="#ic-chev-r"/></svg></button>
-      <button class="hslider__arrow hslider__arrow--next" type="button" data-hs="next" aria-label="التالي" hidden><svg><use href="#ic-chev-l"/></svg></button>
-
+    <div class="hslider hslider--banner" data-hslider data-hs-auto="5000" id="heroSlider">
       <div class="hslider__track" data-hs-track>
-
-        <!-- الشريحة الأولى: هوية المطعم (تحمل عنوان الصفحة H1) -->
-        <div class="hero__grid hslider__slide">
-
-    <div class="hero__copy">
-      <div class="hero__eyebrow kicker" data-hero-eyebrow>مطعم وكافيه · الحديدة</div>
-      <h1 class="display">نكهةٌ تُطرِب المذاق<br/>من <span class="word">مذاقي توب</span></h1>
-      <p class="hero__sub" data-hero-sub>شاورما ع الفحم، برجر، بيتزا، بروست، زنجر وفاهيتا — تُحضَّر طازجة يومياً بأيدٍ ماهرة ونكهةٍ تُدمن.</p>
-      <p class="hero__latin">Mathaqi Top — Restaurant &amp; Café</p>
-
-      <div class="hero__cta">
-        <a class="btn" href="#menu"><svg><use href="#ic-utensils"/></svg> تصفّح المنيو</a>
-        <a class="btn btn--ghost" href="tel:+967777560447"><svg><use href="#ic-scooter"/></svg> اطلب توصيل</a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/zinger.webp" alt="" aria-hidden="true" />
+          <img class="ad__img" src="assets/img/food/zinger.webp" alt="زنجر أو فاهيتا + شاورما عربي + برجر دجاج" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge"><svg class="ad__badge-ic"><use href="#ic-flame"/></svg> عرض الخميس والجمعة</span>
+          <span class="ad__body">
+            <span class="ad__title">زنجر أو فاهيتا + شاورما عربي + برجر دجاج</span>
+            <span class="ad__sub">ثلاث وجبات في عرض واحد</span>
+            <span class="ad__price"><s>2650</s><b>2000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/shawarma-hero.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="ad__img" src="assets/img/food/shawarma-hero.webp" alt="زنجر أو فاهيتا + شاورما عربي + برجر لحم" loading="lazy" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge"><svg class="ad__badge-ic"><use href="#ic-flame"/></svg> عرض الخميس والجمعة</span>
+          <span class="ad__body">
+            <span class="ad__title">زنجر أو فاهيتا + شاورما عربي + برجر لحم</span>
+            <span class="ad__sub">ثلاث وجبات في عرض واحد</span>
+            <span class="ad__price"><s>2800</s><b>2300 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/burger.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="ad__img" src="assets/img/food/burger.webp" alt="٣ برجر لحم" loading="lazy" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge">الثالث مجاناً</span>
+          <span class="ad__body">
+            <span class="ad__title">٣ برجر لحم</span>
+            <span class="ad__sub">اشترِ ٢ والثالث علينا</span>
+            <span class="ad__price"><s>3000</s><b>2000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/chkburger.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="ad__img" src="assets/img/food/chkburger.webp" alt="٣ برجر دجاج" loading="lazy" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge">الثالث مجاناً</span>
+          <span class="ad__body">
+            <span class="ad__title">٣ برجر دجاج</span>
+            <span class="ad__sub">اشترِ ٢ والثالث علينا</span>
+            <span class="ad__price"><s>2250</s><b>1500 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/juice.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="ad__img" src="assets/img/food/juice.webp" alt="برجر وعصير فراولة" loading="lazy" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge gold">برجر + عصير</span>
+          <span class="ad__body">
+            <span class="ad__title">برجر وعصير فراولة</span>
+            <span class="ad__sub">إثنين برجر وإثنين عصير فراولة</span>
+            <span class="ad__price"><b>يبدأ 1500 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide" href="tel:+967738696360">
+          <img class="ad__bg" src="assets/img/food/pizza.webp" alt="" aria-hidden="true" loading="lazy" />
+          <img class="ad__img" src="assets/img/food/pizza.webp" alt="بيتزا خضار + قطعتين بروست + برجر دجاج" loading="lazy" />
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge">كومبو العائلة</span>
+          <span class="ad__body">
+            <span class="ad__title">بيتزا خضار + قطعتين بروست + برجر دجاج</span>
+            <span class="ad__sub">وجبة متكاملة تكفي المجموعة</span>
+            <span class="ad__price"><s>4000</s><b>3000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></b></span>
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
+        <a class="ad hslider__slide ad--plain" href="tel:+967738696360">
+          <span class="ad__big">20%</span>
+          <span class="ad__scrim" aria-hidden="true"></span>
+          <span class="ad__badge gold">لطلاب الثانوية</span>
+          <span class="ad__body">
+            <span class="ad__title">خصم خاص لطلاب الثانوية</span>
+            <span class="ad__sub">سارع بالاستفادة من العروض</span>
+            
+            <span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>
+          </span>
+        </a>
       </div>
 
-      <div class="hero__phones">
-        <a href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> 738696360</a>
-        <a href="tel:+967777560447"><svg><use href="#ic-phone"/></svg> 777560447</a>
-      </div>
-    </div>
-
-    <div class="hero__art">
-      <svg class="hero__ring" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5" stroke-dasharray="0.4 3.2" stroke-linecap="round"/>
-      </svg>
-      <svg class="hero__spark s1" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-spark"/></svg>
-      <svg class="hero__spark s2" viewBox="0 0 24 24" aria-hidden="true"><use href="#ic-spark"/></svg>
-      <div class="hero__medallion">
-        <img class="logo-light" src="assets/img/logo.png" alt="شعار مذاقي توب — مطعم وكافيه" />
-        <img class="logo-dark"  src="assets/img/logo-dark.png" alt="شعار مذاقي توب — مطعم وكافيه" />
-      </div>
-    </div>
-        </div>
-
-        <!-- شرائح العروض — تُستبدل من لوحة التحكم عند ربط قاعدة البيانات -->
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge"><svg class="offer__badge-ic"><use href="#ic-flame"/></svg> عرض الخميس والجمعة</span>
-            <h2>زنجر أو فاهيتا + شاورما عربي + برجر دجاج</h2>
-            <p>ثلاث وجبات في عرض واحد.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="old">2650</span><span class="new">2000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art"><img src="assets/img/food/zinger.webp" alt="عرض الخميس والجمعة" /></div>
-        </article>
-
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge"><svg class="offer__badge-ic"><use href="#ic-flame"/></svg> عرض الخميس والجمعة</span>
-            <h2>زنجر أو فاهيتا + شاورما عربي + برجر لحم</h2>
-            <p>ثلاث وجبات في عرض واحد.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="old">2800</span><span class="new">2300 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art"><img src="assets/img/food/shawarma-hero.webp" alt="عرض الخميس والجمعة" loading="lazy" /></div>
-        </article>
-
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge">الثالث مجاناً</span>
-            <h2>٣ برجر لحم</h2>
-            <p>اشترِ ٢ والثالث علينا — لحم طازج.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="old">3000</span><span class="new">2000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art promo__art--cover"><img src="assets/img/food/burger.webp" alt="٣ برجر لحم" loading="lazy" /></div>
-        </article>
-
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge">الثالث مجاناً</span>
-            <h2>٣ برجر دجاج</h2>
-            <p>اشترِ ٢ والثالث علينا — دجاج مشوي.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="old">2250</span><span class="new">1500 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art promo__art--cover"><img src="assets/img/food/chkburger.webp" alt="٣ برجر دجاج" loading="lazy" /></div>
-        </article>
-
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge gold">برجر + عصير</span>
-            <h2>برجر وعصير فراولة</h2>
-            <p>إثنين برجر عليك وإثنين عصير فراولة علينا.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="new">يبدأ 1500 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art promo__art--round"><img src="assets/img/food/juice.webp" alt="برجر وعصير فراولة" loading="lazy" /></div>
-        </article>
-
-        <article class="promo hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge">كومبو العائلة</span>
-            <h2>بيتزا خضار + قطعتين بروست + برجر دجاج</h2>
-            <p>وجبة متكاملة تكفي المجموعة — عرض الخميس والجمعة.</p>
-            <div class="promo__foot">
-              <div class="offer__price"><span class="old">4000</span><span class="new">3000 <span class="cur riyal" aria-label="ريال">&#x20C1;</span></span></div>
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art promo__art--round"><img src="assets/img/food/pizza.webp" alt="كومبو العائلة" loading="lazy" /></div>
-        </article>
-
-        <article class="promo promo--disc hslider__slide">
-          <div class="promo__body">
-            <span class="offer__badge gold">لطلاب الثانوية</span>
-            <h2>خصم خاص</h2>
-            <p>سارع بالاستفادة من العروض — خصم ٢٠٪ لطلاب الثانوية.</p>
-            <div class="promo__foot">
-              <a class="btn" href="tel:+967738696360"><svg><use href="#ic-phone"/></svg> اطلب العرض</a>
-            </div>
-          </div>
-          <div class="promo__art promo__art--big"><span class="promo__big">20%</span></div>
-        </article>
-
-      </div>
-
+      <button class="hslider__arrow hslider__arrow--prev" type="button" data-hs="prev" aria-label="الإعلان السابق" hidden><svg><use href="#ic-chev-r"/></svg></button>
+      <button class="hslider__arrow hslider__arrow--next" type="button" data-hs="next" aria-label="الإعلان التالي" hidden><svg><use href="#ic-chev-l"/></svg></button>
       <div class="hslider__nav"><div class="hslider__dots" data-hs-dots></div></div>
     </div>
   </div>
@@ -1177,9 +1135,9 @@
 
 <button class="to-top" aria-label="العودة للأعلى"><svg><use href="#ic-arrow-up"/></svg></button>
 
-<script src="assets/js/mt-config.js?v=14"></script>
-<script src="assets/js/reviews.js?v=14" defer></script>
-<script src="assets/js/main.js?v=14" defer></script>
-<script src="assets/js/content.js?v=14" defer></script>
+<script src="assets/js/mt-config.js?v=16"></script>
+<script src="assets/js/reviews.js?v=16" defer></script>
+<script src="assets/js/main.js?v=16" defer></script>
+<script src="assets/js/content.js?v=16" defer></script>
 </body>
 </html>

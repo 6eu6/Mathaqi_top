@@ -106,43 +106,40 @@
       "</article>";
   }
 
-  /* one offer, rendered as a wide hero advert */
-  function promoHTML(o) {
-    var art;
-    if (o.image_fit === "none" || !o.image_url) {
-      art = '<div class="promo__art promo__art--big">' +
-        (o.big_text ? '<span class="promo__big">' + esc(o.big_text) + "</span>" : "") + "</div>";
-    } else {
-      var mod = o.image_fit === "cover" ? " promo__art--cover"
-              : o.image_fit === "round" ? " promo__art--round" : "";
-      art = '<div class="promo__art' + mod + '">' +
-        '<img src="' + esc(img(o.image_url)) + '" alt="' + esc(o.title) + '" loading="lazy" /></div>';
+  /* one offer, rendered as a rectangular banner ad */
+  function adHTML(o) {
+    var plain = o.image_fit === "none" || !o.image_url;
+    var src = plain ? "" : img(o.image_url);
+
+    var media = plain
+      ? (o.big_text ? '<span class="ad__big">' + esc(o.big_text) + "</span>" : "")
+      : '<img class="ad__bg" src="' + esc(src) + '" alt="" aria-hidden="true" loading="lazy" />' +
+        '<img class="ad__img" src="' + esc(src) + '" alt="' + esc(o.title) + '" loading="lazy" />';
+
+    var badge = "";
+    if (o.badge) {
+      var flame = o.featured ? '<svg class="ad__badge-ic"><use href="#ic-flame"/></svg> ' : "";
+      badge = '<span class="ad__badge' + (o.badge_gold ? " gold" : "") + '">' + flame + esc(o.badge) + "</span>";
     }
 
     var price = "";
     if (o.price_text) {
-      price = '<div class="offer__price"><span class="new">' + esc(o.price_text) + " " + RIYAL + "</span></div>";
+      price = '<span class="ad__price"><b>' + esc(o.price_text) + " " + RIYAL + "</b></span>";
     } else if (o.new_price != null) {
-      price = '<div class="offer__price">' +
-        (o.old_price != null ? '<span class="old">' + esc(money(o.old_price)) + "</span>" : "") +
-        '<span class="new">' + esc(money(o.new_price)) + " " + RIYAL + "</span></div>";
+      price = '<span class="ad__price">' +
+        (o.old_price != null ? "<s>" + esc(money(o.old_price)) + "</s>" : "") +
+        "<b>" + esc(money(o.new_price)) + " " + RIYAL + "</b></span>";
     }
 
-    return '<article class="promo hslider__slide">' +
-      '<div class="promo__body">' + badgeHTML(o) +
-        "<h2>" + esc(o.title) + "</h2>" +
-        (o.subtitle ? "<p>" + esc(o.subtitle) + "</p>" : "") +
-        '<div class="promo__foot">' + price +
-          '<a class="btn" href="tel:+967' + esc(PHONE1) + '">' +
-          '<svg><use href="#ic-phone"/></svg> اطلب العرض</a>' +
-        "</div>" +
-      "</div>" + art + "</article>";
-  }
-
-  function badgeHTML(o) {
-    if (!o.badge) return "";
-    var flame = o.featured ? '<svg class="offer__badge-ic"><use href="#ic-flame"/></svg> ' : "";
-    return '<span class="offer__badge' + (o.badge_gold ? " gold" : "") + '">' + flame + esc(o.badge) + "</span>";
+    return '<a class="ad hslider__slide' + (plain ? " ad--plain" : "") + '" href="tel:+967' + esc(PHONE1) + '">' +
+      media +
+      '<span class="ad__scrim" aria-hidden="true"></span>' + badge +
+      '<span class="ad__body">' +
+        '<span class="ad__title">' + esc(o.title) + "</span>" +
+        (o.subtitle ? '<span class="ad__sub">' + esc(o.subtitle) + "</span>" : "") +
+        price +
+        '<span class="ad__cta"><svg><use href="#ic-phone"/></svg> اطلب الآن</span>' +
+      "</span></a>";
   }
 
   function dishHTML(d) {
@@ -229,11 +226,7 @@
     }
 
     if (offers.length) {
-      /* keep the brand slide (it carries the page's H1) and refresh the ads after it */
-      var heroTrack = document.querySelector("#heroSlider [data-hs-track]");
-      if (heroTrack && heroTrack.firstElementChild) {
-        changed = setHTML(heroTrack, heroTrack.firstElementChild.outerHTML + offers.map(promoHTML).join("")) || changed;
-      }
+      changed = setHTML(document.querySelector("#heroSlider [data-hs-track]"), offers.map(adHTML).join("")) || changed;
     }
 
     if (dishes.length) {
