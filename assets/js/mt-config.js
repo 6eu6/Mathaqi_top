@@ -1,12 +1,11 @@
 /* مذاقي توب — إعدادات الاتصال بقاعدة البيانات.
-   ضع هنا رابط المشروع والمفتاح العام (anon / publishable) من:
-   Supabase Dashboard ← Project Settings ← API
 
    المفتاح العام آمن للنشر: الحماية الحقيقية من صلاحيات RLS في قاعدة
-   البيانات — من لا يملك حساب مدير لا يستطيع تعديل أي شيء.
+   البيانات — من لا يملك حساب مدير لا يستطيع تعديل أي شيء، ولا يصل
+   إلى أي جدول خارج جداول مذاقي توب.
 
-   ما دامت القيم فارغة، يعمل الموقع بمحتواه الثابت كما هو تماماً. */
+   إن أُفرغت القيم، يعمل الموقع بمحتواه الثابت المدمج كما هو تماماً. */
 window.MT_CONFIG = {
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: ""
+  SUPABASE_URL: "https://bbuqcmxgafrqrkjehzik.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_wjofntVOp6FVYzqLqBmHbA_ToKLdLNR"
 };
