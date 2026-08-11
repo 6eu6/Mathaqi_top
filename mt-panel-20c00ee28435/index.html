@@ -265,7 +265,7 @@ textarea{resize:vertical;min-height:76px}
 
 <div class="toast" id="toast"></div>
 
-<script src="../assets/js/mt-config.js?v=16"></script>
+<script src="../assets/js/mt-config.js?v=17"></script>
 <script>
 (function () {
   "use strict";
@@ -633,8 +633,7 @@ textarea{resize:vertical;min-height:76px}
 
   /* ---------------- SETTINGS ---------------- */
   function renderSettings() {
-    var c = DB.settings.contact || {}, s = DB.settings.sections || {},
-        h = DB.settings.hero || {}, sig = DB.settings.signature || {};
+    var c = DB.settings.contact || {}, s = DB.settings.sections || {}, h = DB.settings.hero || {};
     $("#settingsForm").innerHTML =
       '<div class="card"><h3 style="margin-bottom:.8rem">التواصل</h3><div class="fields">' +
         field("رقم الطلب الأساسي", "st_p1", c.phone1) +
@@ -650,11 +649,6 @@ textarea{resize:vertical;min-height:76px}
       '<div class="card"><h3 style="margin-bottom:.8rem">الواجهة الرئيسية</h3>' +
         field("السطر العلوي", "st_h_eyebrow", h.eyebrow) +
         area("النص التعريفي", "st_h_sub", h.subtitle) + "</div>" +
-
-      '<div class="card"><h3 style="margin-bottom:.8rem">الطبق المميّز</h3>' +
-        field("العنوان", "st_sig_title", sig.title) +
-        area("الوصف", "st_sig_text", sig.text) +
-        field("يبدأ من (سعر)", "st_sig_price", sig.from_price, "number") + "</div>" +
 
       '<div class="card"><h3 style="margin-bottom:.8rem">عناوين الأقسام</h3><div class="fields">' +
         field("المنيو — عنوان", "st_menu_title", s.menu_title) +
@@ -674,8 +668,6 @@ textarea{resize:vertical;min-height:76px}
             open_from: num(val("st_open")), open_to: (DB.settings.contact || {}).open_to || 24,
             instagram: val("st_ig"), maps: val("st_maps") } },
         { key: "hero", value: Object.assign({}, h, { eyebrow: val("st_h_eyebrow"), subtitle: val("st_h_sub") }) },
-        { key: "signature", value: Object.assign({}, sig, {
-            title: val("st_sig_title"), text: val("st_sig_text"), from_price: num(val("st_sig_price")) }) },
         { key: "sections", value: Object.assign({}, s, {
             menu_title: val("st_menu_title"), menu_text: val("st_menu_text"),
             dishes_title: val("st_dishes_title"), dishes_text: val("st_dishes_text"),

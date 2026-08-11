@@ -156,7 +156,7 @@
   var PHONE1 = "738696360";
 
   function applySettings(map) {
-    var c = map.contact || {}, s = map.sections || {}, h = map.hero || {}, sig = map.signature || {};
+    var c = map.contact || {}, s = map.sections || {}, h = map.hero || {};
 
     if (c.phone1) {
       PHONE1 = String(c.phone1);
@@ -193,9 +193,6 @@
     setText("[data-s-offers-title]", s.offers_title);
     setText("[data-hero-eyebrow]", h.eyebrow);
     setText("[data-hero-sub]", h.subtitle);
-    setText("[data-sig-title]", sig.title);
-    setText("[data-sig-text]", sig.text);
-    if (sig.from_price != null) setText("[data-sig-price]", money(sig.from_price));
 
     if (c.open_from != null) document.documentElement.setAttribute("data-open-from", c.open_from);
     if (c.open_to != null) document.documentElement.setAttribute("data-open-to", c.open_to);
